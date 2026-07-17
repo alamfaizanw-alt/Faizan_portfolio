@@ -2,7 +2,8 @@
   "bio": {
     "name": "Your Name",
     "tagline": "Mechatronics Engineer \u00b7 Robotics Developer \u00b7 Builder",
-    "intro": "Mechatronics Engineering graduate with hands-on experience in robotics systems, computer vision, machine learning, and full-stack development. I design, build, and program systems from mechanical prototypes through deployed software.",
+    "intro": "Mechatronics Engineering graduate with hands-on experience across robotics systems, computer vision, machine learning, and full-stack development. I design, build, and program systems \u2014 from mechanical prototypes to deployed software.",
+    "photo": "",
     "links": {
       "linkedin": "",
       "github": "",
@@ -10,6 +11,147 @@
       "resume": ""
     }
   },
+  "stats": [
+    {
+      "value": 10,
+      "suffix": "+",
+      "label": "Years FIRST Robotics"
+    },
+    {
+      "value": 50,
+      "suffix": "+",
+      "label": "Students Mentored"
+    },
+    {
+      "value": 3,
+      "suffix": "",
+      "label": "FRC Teams to Provincials"
+    },
+    {
+      "value": 6,
+      "suffix": "+",
+      "label": "Projects Deployed"
+    }
+  ],
+  "timeline": [
+    {
+      "id": "caution-coach",
+      "title": "VEX IQ Robotics Coach",
+      "company": "Caution Tape Robotics",
+      "date": "May 2025\u2013Present",
+      "type": "work",
+      "bullets": [
+        "Coached students through full engineering design process from concept to competition-ready prototype",
+        "Delivered live instruction on hardware/software integration, mechanics, and programming fundamentals"
+      ],
+      "order": 1
+    },
+    {
+      "id": "caution-dev",
+      "title": "Robotics Curriculum Developer",
+      "company": "Caution Tape Robotics",
+      "date": "Nov 2024\u2013May 2025",
+      "type": "work",
+      "bullets": [
+        "Designed 3D CAD models of mechanical systems including gearboxes, bar lifts, and drivetrains in OnShape",
+        "Built and tested example robots as teaching aids, validating designs through iterative physical testing"
+      ],
+      "order": 2
+    },
+    {
+      "id": "wiz-dev",
+      "title": "Programming & Robotics Developer",
+      "company": "Wiz Robotics",
+      "date": "Oct 2021\u2013Present",
+      "type": "work",
+      "bullets": [
+        "Engineered 30+ coding projects as training material; developed HTML/CSS lessons improving engagement by 35%",
+        "Mentored 50+ students in Java, Arduino, Python \u2014 covering OOP, PID control, sensors, and multi-subsystem architectures"
+      ],
+      "order": 3
+    },
+    {
+      "id": "wiz-lead",
+      "title": "Lead Robotics Engineer & Manager",
+      "company": "Wiz Robotics",
+      "date": "Sept 2022\u2013Aug 2023",
+      "type": "work",
+      "bullets": [
+        "Built TensorFlow and OpenCV detection pipelines in Java achieving 100% increase in mechanism speed",
+        "Coached 1 FLL and 2 FTC teams to 2x 1st and 1x 2nd place at qualifiers; top 10/20 provincially"
+      ],
+      "order": 4
+    },
+    {
+      "id": "ontario-tech",
+      "title": "B.Eng. Mechatronics (Hons)",
+      "company": "Ontario Tech University",
+      "date": "Sept 2019\u2013Apr 2024",
+      "type": "education",
+      "bullets": [
+        "Graduated with co-op designation",
+        "Capstone: Hand Gesture\u2013Controlled Stewart Platform \u2014 98% accuracy, delivered within 50% of budget"
+      ],
+      "order": 5
+    },
+    {
+      "id": "outlier",
+      "title": "AI Data Trainer & Evaluator",
+      "company": "Outlier",
+      "date": "Aug 2024\u2013Oct 2024",
+      "type": "work",
+      "bullets": [
+        "Evaluated LLM outputs against structured test suites; contributed to 50% improvement in model response relevancy"
+      ],
+      "order": 6
+    }
+  ],
+  "skills": [
+    {
+      "category": "Programming",
+      "items": [
+        "Python",
+        "Java",
+        "C++",
+        "Arduino",
+        "HTML",
+        "CSS"
+      ]
+    },
+    {
+      "category": "ML / AI",
+      "items": [
+        "TensorFlow",
+        "OpenCV",
+        "MediaPipe",
+        "CNNs",
+        "LLMs",
+        "RAG"
+      ]
+    },
+    {
+      "category": "Robotics",
+      "items": [
+        "ROS",
+        "PID Control",
+        "FRC",
+        "VEX IQ",
+        "LiDAR",
+        "Embedded Systems"
+      ]
+    },
+    {
+      "category": "CAD & Tools",
+      "items": [
+        "SolidWorks",
+        "OnShape",
+        "Fusion 360",
+        "NX Siemens",
+        "Git",
+        "Linux"
+      ]
+    }
+  ],
   "projects": [
     {
       "id": "stewart-platform",
@@ -22,8 +164,10 @@
         "OnShape",
         "Arduino"
       ],
-      "summary": "6-DOF Stewart platform with real-time hand gesture recognition at 98% accuracy, delivered within 50% of budget.",
-      "description": "Led the full design and development of a 6-DOF Stewart platform as a capstone project. Implemented real-time hand gesture recognition using Python and MediaPipe, achieving 98% accuracy across 6 gestures mapped to 6 degrees of freedom. Designed and iterated CAD models in OnShape to improve range of motion across all translational and rotational axes. Over 100 participants operated the prototype at the final exhibition.",
+      "summary": "6-DOF Stewart platform with real-time hand gesture recognition at 98% accuracy.",
+      "challenge": "Build a 6-DOF motion control system using natural hand gestures \u2014 without commercial motion capture hardware and within a tight budget.",
+      "approach": "Implemented real-time gesture recognition using Python and MediaPipe, mapping 6 distinct gestures to 6 degrees of freedom. Designed and iterated servo-driven parallel mechanism in Arduino. Designed all mechanical supports in OnShape.",
+      "outcome": "98% gesture recognition accuracy across 6 DOF. Delivered within 50% of budget. 100+ participants operated the prototype at the final exhibition.",
       "thumbnail": "",
       "media": [],
       "video": "",
@@ -45,8 +189,10 @@
         "Python",
         "Path Planning"
       ],
-      "summary": "ROS-based TurtleBot for autonomous path planning, trajectory following, colour recognition, and object detection.",
-      "description": "Co-developed a ROS-based TurtleBot on Linux implementing path planning, trajectory following, colour recognition, and object detection. Completed all milestone demonstrations in under 3 minutes, ranking in the top 10% of the class. Scripted LiDAR-based path planning simulations for a skid-steer vehicle, validating navigation algorithms across multiple scenarios.",
+      "summary": "ROS-based TurtleBot for autonomous navigation, object detection, and LiDAR path planning.",
+      "challenge": "Implement autonomous navigation, colour recognition, and object detection on a mobile robot platform using ROS on Linux.",
+      "approach": "Co-developed ROS-based TurtleBot implementing path planning, trajectory following, colour and object recognition. Scripted LiDAR-based navigation simulations for a skid-steer vehicle separately.",
+      "outcome": "Completed all milestone demos in under 3 minutes. Ranked in the top 10% of the class.",
       "thumbnail": "",
       "media": [],
       "video": "",
@@ -68,8 +214,10 @@
         "Google Sheets",
         "Apps Script"
       ],
-      "summary": "Full-stack camp management portal with key-gated student sections, admin panel, and Google Sheets attendance.",
-      "description": "Built a GitHub Pages-hosted portal for a STEM robotics camp serving students ages 6\u201312. Features include key-gated student sections, an admin panel, GitHub Contents API persistence, and a Google Sheets/Forms-based attendance system with an Apps Script trigger.",
+      "summary": "Full-stack camp management portal with key-gated sections and Google Sheets attendance.",
+      "challenge": "Build a complete camp management system for 6\u201312 year old students with no backend server \u2014 hosted entirely on GitHub Pages.",
+      "approach": "Built using GitHub Contents API for persistence, key-gated student and admin sections, and a Google Sheets/Forms attendance system with an Apps Script trigger.",
+      "outcome": "Deployed and actively used for live camp operations with multiple student cohorts.",
       "thumbnail": "",
       "media": [],
       "video": "",
@@ -90,8 +238,10 @@
         "HTML/CSS",
         "Eisenhower Matrix"
       ],
-      "summary": "Personal productivity PWA with Eisenhower-style priority engine, guided task estimator, and daily planner.",
-      "description": "Built a client-side personal productivity tracker. Features an Eisenhower-style priority engine, guided task estimator, and a Daily Assistant planner with Focus and Spread modes.",
+      "summary": "Personal productivity PWA with priority engine, task estimator, and daily planner.",
+      "challenge": "Create a client-side productivity tool that works offline and persists data without any backend infrastructure.",
+      "approach": "Built a PWA with Eisenhower-style priority engine, guided task estimator, and a Daily Assistant planner with Focus and Spread modes using localStorage persistence.",
+      "outcome": "Fully functional offline-capable PWA. Used daily for personal task management.",
       "thumbnail": "",
       "media": [],
       "video": "",

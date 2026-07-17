@@ -7,28 +7,34 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
 <nav>
   <a href="index.html" class="nav-logo" id="nav-logo">FA</a>
-  <div class="nav-links">
+  <div class="nav-links" id="nav-links">
     <a href="work.html" class="active">Work</a>
+    <a href="index.html#about">About</a>
     <a href="index.html#contact">Contact</a>
   </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <div class="page-header">
   <div class="section-label">Portfolio</div>
-  <h1>Work</h1>
+  <h1>All Projects</h1>
 </div>
 
-<div style="max-width:1100px; margin:0 auto; padding:0 2.5rem 5rem;">
+<div style="max-width:1100px;margin:0 auto;padding:0 2.5rem 6rem;">
   <div class="filter-bar" id="filter-bar"></div>
   <div class="projects-grid" id="projects-grid">
     <div class="loading">Loading projects...</div>
   </div>
 </div>
 
-<footer><span id="footer-name"></span></footer>
+<footer>
+  <span class="footer-name" id="footer-name"></span>
+  <span class="footer-copy">&copy; <span id="year"></span></span>
+</footer>
 
 <script src="js/api.js"></script>
 <script src="js/work.js"></script>

@@ -7,20 +7,26 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
 <nav>
   <a href="index.html" class="nav-logo" id="nav-logo">FA</a>
-  <div class="nav-links">
+  <div class="nav-links" id="nav-links">
     <a href="work.html">Work</a>
+    <a href="index.html#about">About</a>
     <a href="index.html#contact">Contact</a>
   </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <div class="project-detail" id="project-content">
   <div class="loading">Loading project...</div>
 </div>
 
-<footer><span id="footer-name"></span></footer>
+<footer>
+  <span class="footer-name" id="footer-name"></span>
+  <span class="footer-copy">&copy; <span id="year"></span></span>
+</footer>
 
 <script src="js/api.js"></script>
 <script src="js/project.js"></script>

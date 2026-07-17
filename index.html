@@ -3,62 +3,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio</title>
+  <title id="page-title">Portfolio</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="nav-logo" id="nav-logo">FA</a>
-  <div class="nav-links">
+  <div class="nav-links" id="nav-links">
     <a href="work.html">Work</a>
+    <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </div>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-eyebrow">Mechatronics Engineer &amp; Robotics Developer</div>
-    <h1 class="hero-name" id="hero-name">Your Name</h1>
-    <p class="hero-tagline" id="hero-tagline">Loading...</p>
-    <div class="hero-actions">
-      <a href="work.html" class="btn">View My Work &rarr;</a>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow" id="hero-eyebrow">Mechatronics Engineer</div>
+      <h1 class="hero-name" id="hero-name">
+        <span>YOUR</span>
+        <span class="name-dim">NAME</span>
+      </h1>
+      <div class="hero-role" id="hero-role">Robotics Developer &amp; Builder<br>Ontario Tech University, B.Eng.</div>
+      <div class="hero-actions">
+        <a href="work.html" class="btn">View My Work &rarr;</a>
+        <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+      </div>
+      <div class="social-links" id="social-links"></div>
     </div>
-    <div class="social-links" id="social-links"></div>
+    <div class="hero-photo">
+      <div class="photo-frame" id="photo-frame">
+        <div class="photo-inner" id="photo-inner">
+          <div class="photo-placeholder-icon">
+            <svg viewBox="0 0 80 100" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="28" r="20"/>
+              <path d="M5 100 Q5 58 40 58 Q75 58 75 100"/>
+            </svg>
+          </div>
+          <div class="photo-placeholder-text">Add photo via<br>admin panel</div>
+        </div>
+        <span class="cb"></span>
+        <div class="photo-label">FAIZAN ALAM &mdash; MECHATRONICS ENG.</div>
+      </div>
+    </div>
   </div>
+  <div class="scroll-cue">Scroll</div>
 </section>
 
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track" id="marquee-track">
+    <!-- populated by JS -->
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-section" style="padding:4rem 2.5rem;">
+  <div class="stats-grid reveal" id="stats-grid">
+    <!-- populated by JS -->
+  </div>
+</div>
+
 <hr class="divider">
 
-<div class="section-wrap" id="about">
+<!-- ABOUT -->
+<div class="section" id="about">
   <div class="section-label">About</div>
-  <h2 class="section-title">Who I Am</h2>
-  <p class="about-text" id="about-text"></p>
+  <h2 class="section-title reveal">Who I Am</h2>
+  <div class="about-grid">
+    <div>
+      <p class="about-text reveal" id="about-text"></p>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="specialties" id="specialties-grid">
+        <div class="specialty-item">
+          <div class="specialty-icon">⚙</div>
+          <div class="specialty-name">Robotics Systems</div>
+          <div class="specialty-desc">FRC, VEX IQ, ROS, PID, multi-subsystem design</div>
+        </div>
+        <div class="specialty-item">
+          <div class="specialty-icon">{ }</div>
+          <div class="specialty-name">Software Dev</div>
+          <div class="specialty-desc">Python, Java, C++, full-stack web</div>
+        </div>
+        <div class="specialty-item">
+          <div class="specialty-icon">◈</div>
+          <div class="specialty-name">ML / Vision</div>
+          <div class="specialty-desc">TensorFlow, OpenCV, MediaPipe, CNNs</div>
+        </div>
+        <div class="specialty-item">
+          <div class="specialty-icon">△</div>
+          <div class="specialty-name">CAD & Hardware</div>
+          <div class="specialty-desc">SolidWorks, OnShape, Fusion 360, embedded</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <hr class="divider">
 
-<div class="section-wrap" id="featured">
-  <div class="section-label">Selected Work</div>
-  <h2 class="section-title">Featured Projects</h2>
-  <div class="projects-grid" id="featured-grid">
-    <div class="loading">Loading...</div>
-  </div>
-  <div style="margin-top:2rem;">
-    <a href="work.html" class="btn btn-ghost">View All Work &rarr;</a>
+<!-- TIMELINE -->
+<div class="section-full" id="experience">
+  <div class="section-inner">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title reveal">Where I&rsquo;ve Worked</h2>
+    <div class="timeline reveal" id="timeline">
+      <div class="loading">Loading timeline...</div>
+    </div>
   </div>
 </div>
 
 <hr class="divider">
 
-<div class="section-wrap" id="contact">
+<!-- SKILLS -->
+<div class="section" id="skills">
+  <div class="section-label">Skills</div>
+  <h2 class="section-title reveal">What I Work With</h2>
+  <div class="skills-grid reveal" id="skills-grid">
+    <!-- populated by JS -->
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- FEATURED PROJECTS -->
+<div class="section-full" id="projects">
+  <div class="section-inner">
+    <div class="section-label">Selected Work</div>
+    <h2 class="section-title reveal">Featured Projects</h2>
+    <div class="projects-grid reveal" id="featured-grid">
+      <div class="loading">Loading projects...</div>
+    </div>
+    <div style="margin-top:2rem;">
+      <a href="work.html" class="btn btn-ghost">View All Projects &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<div class="section" id="contact">
   <div class="section-label">Contact</div>
-  <h2 class="section-title">Get In Touch</h2>
-  <p class="about-text">Open to opportunities in robotics, software, and engineering. Let&rsquo;s connect.</p>
-  <div class="social-links" id="contact-links" style="margin-top:1.5rem;"></div>
+  <h2 class="section-title reveal">Let&rsquo;s Work Together</h2>
+  <div class="contact-inner">
+    <div class="reveal">
+      <p class="contact-text">Open to opportunities in robotics engineering, software development, and technical roles. Whether you have a project in mind or just want to connect &mdash; reach out.</p>
+      <div class="social-links" id="contact-links"></div>
+    </div>
+    <div class="reveal reveal-delay-1" style="font-family:var(--font-mono);font-size:11px;color:var(--text-dim);line-height:2.5;">
+      <div>BASED IN &mdash; Toronto, Ontario</div>
+      <div>DEGREE &mdash; Mechatronics B.Eng (Hons)</div>
+      <div>EXPERIENCE &mdash; 10+ Years Robotics</div>
+      <div>STATUS &mdash; <span style="color:var(--gold);">Open to Opportunities</span></div>
+    </div>
+  </div>
 </div>
 
-<footer><span id="footer-name"></span> &mdash; Built with purpose.</footer>
+<footer>
+  <span class="footer-name" id="footer-name"></span>
+  <span class="footer-copy">&copy; <span id="year"></span> &mdash; Built with purpose.</span>
+</footer>
 
 <script src="js/api.js"></script>
 <script src="js/main.js"></script>
