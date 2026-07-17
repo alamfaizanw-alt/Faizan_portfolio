@@ -486,3 +486,79 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
   .projects-grid{grid-template-columns:1fr;}
   .hero-actions{flex-direction:column;align-items:flex-start;}
 }
+
+/* ── CONTACT REDESIGN ── */
+.contact-bold {
+  text-align: center;
+  padding: 7rem 2.5rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.contact-statement {
+  font-family: var(--font-head);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+.contact-statement em {
+  color: var(--gold);
+  font-style: normal;
+}
+.contact-sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin: 0 auto 3rem;
+  line-height: 1.75;
+}
+.contact-email {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: var(--text);
+  border-bottom: 1px solid var(--gold-dim);
+  padding-bottom: 0.25rem;
+  margin-bottom: 2.5rem;
+  transition: color 0.2s, border-color 0.2s;
+  letter-spacing: -0.01em;
+}
+.contact-email:hover { color: var(--gold); border-color: var(--gold); }
+.contact-socials {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+.contact-socials .social-link {
+  width: 44px;
+  height: 44px;
+}
+.contact-socials .social-link svg { width: 18px; height: 18px; }
+
+/* ── DIAGONAL FLOW ── */
+.clip-down {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 48px), 0 100%);
+  margin-bottom: -48px;
+  padding-bottom: calc(6rem + 48px) !important;
+}
+.clip-up {
+  clip-path: polygon(0 48px, 100% 0, 100% 100%, 0 100%);
+  padding-top: calc(6rem + 48px) !important;
+  margin-top: -48px;
+}
+.clip-both {
+  clip-path: polygon(0 48px, 100% 0, 100% calc(100% - 48px), 0 100%);
+  padding-top: calc(6rem + 48px) !important;
+  padding-bottom: calc(6rem + 48px) !important;
+  margin-top: -48px;
+  margin-bottom: -48px;
+}
+
+@media(max-width:768px) {
+  .clip-down  { clip-path: polygon(0 0,100% 0,100% calc(100% - 24px),0 100%); margin-bottom:-24px; }
+  .clip-up    { clip-path: polygon(0 24px,100% 0,100% 100%,0 100%); padding-top:calc(4rem + 24px) !important; }
+  .clip-both  { clip-path: polygon(0 24px,100% 0,100% calc(100% - 24px),0 100%); }
+  .contact-bold { padding: 5rem 1.25rem; }
+}

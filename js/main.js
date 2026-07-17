@@ -73,6 +73,15 @@ const statObs = new IntersectionObserver(entries => {
     renderSocialLinks(bio.links, document.getElementById('social-links'));
     renderSocialLinks(bio.links, document.getElementById('contact-links'));
 
+    // Contact email
+    const emailEl = document.getElementById('contact-email');
+    if (emailEl && bio.links?.email) {
+      emailEl.href = `mailto:${bio.links.email}`;
+      emailEl.textContent = bio.links.email;
+    } else if (emailEl) {
+      emailEl.style.display = 'none';
+    }
+
     // About
     document.getElementById('about-text').textContent = bio.intro || '';
 
