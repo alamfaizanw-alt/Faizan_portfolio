@@ -1,13 +1,13 @@
 {
   "bio": {
-    "name": "Your Name",
-    "tagline": "Mechatronics Engineer \u00b7 Robotics Developer \u00b7 Builder",
-    "intro": "Mechatronics Engineering graduate with hands-on experience across robotics systems, computer vision, machine learning, and full-stack development. I design, build, and program systems \u2014 from mechanical prototypes to deployed software.",
+    "name": "Faizan Alam",
+    "tagline": "Mechatronics Engineer · Robotics Developer · Builder",
+    "intro": "Mechatronics Engineering graduate with multidisciplinary expertise in robotics, AI, computer vision, embedded systems, and software engineering. Proven experience architecting and deploying intelligent robotic systems by integrating mechanical design, perception algorithms, control systems, and full-stack software into cohesive solutions. Skilled in ROS, Python, C++, TensorFlow, OpenCV, CAD, and system integration, with a strong foundation in autonomous robotics, machine learning, and hardware-software co-design. Dedicated to developing high-performance engineering solutions that bridge advanced research with practical deployment.",
     "photo": "",
     "links": {
-      "linkedin": "",
+      "linkedin": "www.linkedin.com/in/faizan-alam-781198230",
       "github": "",
-      "email": "",
+      "email": "alamfaizanW@gmail.com",
       "resume": ""
     }
   },
@@ -18,14 +18,14 @@
       "label": "Years FIRST Robotics"
     },
     {
-      "value": 50,
+      "value": 100,
       "suffix": "+",
       "label": "Students Mentored"
     },
     {
-      "value": 3,
+      "value": 5,
       "suffix": "",
-      "label": "FRC Teams to Provincials"
+      "label": "FIRST Teams to Provincials"
     },
     {
       "value": 6,
@@ -38,7 +38,7 @@
       "id": "caution-coach",
       "title": "VEX IQ Robotics Coach",
       "company": "Caution Tape Robotics",
-      "date": "May 2025\u2013Present",
+      "date": "May 2025–Present",
       "type": "work",
       "bullets": [
         "Coached students through full engineering design process from concept to competition-ready prototype",
@@ -50,7 +50,7 @@
       "id": "caution-dev",
       "title": "Robotics Curriculum Developer",
       "company": "Caution Tape Robotics",
-      "date": "Nov 2024\u2013May 2025",
+      "date": "Nov 2024–May 2025",
       "type": "work",
       "bullets": [
         "Designed 3D CAD models of mechanical systems including gearboxes, bar lifts, and drivetrains in OnShape",
@@ -62,11 +62,11 @@
       "id": "wiz-dev",
       "title": "Programming & Robotics Developer",
       "company": "Wiz Robotics",
-      "date": "Oct 2021\u2013Present",
+      "date": "Oct 2021–Present",
       "type": "work",
       "bullets": [
         "Engineered 30+ coding projects as training material; developed HTML/CSS lessons improving engagement by 35%",
-        "Mentored 50+ students in Java, Arduino, Python \u2014 covering OOP, PID control, sensors, and multi-subsystem architectures"
+        "Mentored 50+ students in Java, Arduino, Python — covering OOP, PID control, sensors, and multi-subsystem architectures"
       ],
       "order": 3
     },
@@ -74,7 +74,7 @@
       "id": "wiz-lead",
       "title": "Lead Robotics Engineer & Manager",
       "company": "Wiz Robotics",
-      "date": "Sept 2022\u2013Aug 2023",
+      "date": "Sept 2022–Aug 2023",
       "type": "work",
       "bullets": [
         "Built TensorFlow and OpenCV detection pipelines in Java achieving 100% increase in mechanism speed",
@@ -86,11 +86,11 @@
       "id": "ontario-tech",
       "title": "B.Eng. Mechatronics (Hons)",
       "company": "Ontario Tech University",
-      "date": "Sept 2019\u2013Apr 2024",
+      "date": "Sept 2019–Apr 2024",
       "type": "education",
       "bullets": [
         "Graduated with co-op designation",
-        "Capstone: Hand Gesture\u2013Controlled Stewart Platform \u2014 98% accuracy, delivered within 50% of budget"
+        "Capstone: Hand Gesture–Controlled Stewart Platform — 98% accuracy, delivered within 50% of budget"
       ],
       "order": 5
     },
@@ -98,7 +98,7 @@
       "id": "outlier",
       "title": "AI Data Trainer & Evaluator",
       "company": "Outlier",
-      "date": "Aug 2024\u2013Oct 2024",
+      "date": "Aug 2024–Oct 2024",
       "type": "work",
       "bullets": [
         "Evaluated LLM outputs against structured test suites; contributed to 50% improvement in model response relevancy"
@@ -155,8 +155,9 @@
   "projects": [
     {
       "id": "stewart-platform",
-      "title": "Hand Gesture\u2013Controlled Stewart Platform",
+      "title": "Hand Gesture–Controlled Stewart Platform",
       "category": "Robotics",
+      "order": 1,
       "tags": [
         "Python",
         "MediaPipe",
@@ -165,22 +166,23 @@
         "Arduino"
       ],
       "summary": "6-DOF Stewart platform with real-time hand gesture recognition at 98% accuracy.",
-      "challenge": "Build a 6-DOF motion control system using natural hand gestures \u2014 without commercial motion capture hardware and within a tight budget.",
+      "challenge": "Build a 6-DOF motion control system using natural hand gestures — without commercial motion capture hardware and within a tight budget.",
       "approach": "Implemented real-time gesture recognition using Python and MediaPipe, mapping 6 distinct gestures to 6 degrees of freedom. Designed and iterated servo-driven parallel mechanism in Arduino. Designed all mechanical supports in OnShape.",
       "outcome": "98% gesture recognition accuracy across 6 DOF. Delivered within 50% of budget. 100+ participants operated the prototype at the final exhibition.",
       "thumbnail": "",
-      "media": [],
-      "video": "",
+      "media": [
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/stewart-platform/1784343992274.png"
+      ],
+      "video": "https://youtu.be/2wNtQbqKHQA",
       "links": {
         "github": "",
         "live": ""
       },
-      "featured": true,
-      "order": 1
+      "featured": true
     },
     {
       "id": "ros-lidar",
-      "title": "Mobile Robotics \u2014 ROS / LiDAR",
+      "title": "Mobile Robotics — ROS / LiDAR",
       "category": "Robotics",
       "tags": [
         "ROS",
@@ -215,7 +217,7 @@
         "Apps Script"
       ],
       "summary": "Full-stack camp management portal with key-gated sections and Google Sheets attendance.",
-      "challenge": "Build a complete camp management system for 6\u201312 year old students with no backend server \u2014 hosted entirely on GitHub Pages.",
+      "challenge": "Build a complete camp management system for 6–12 year old students with no backend server — hosted entirely on GitHub Pages.",
       "approach": "Built using GitHub Contents API for persistence, key-gated student and admin sections, and a Google Sheets/Forms attendance system with an Apps Script trigger.",
       "outcome": "Deployed and actively used for live camp operations with multiple student cohorts.",
       "thumbnail": "",
