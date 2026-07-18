@@ -105,14 +105,20 @@
         <div class="field"><label>The Challenge (what problem were you solving?)</label><textarea id="proj-challenge"></textarea></div>
         <div class="field"><label>My Approach (what did you build and how?)</label><textarea id="proj-approach"></textarea></div>
         <div class="field"><label>Outcome (key results &amp; metrics)</label><textarea id="proj-outcome"></textarea></div>
-        <div class="field"><label>Thumbnail URL</label><input type="url" id="proj-thumb"></div>
+        <div class="field"><label>Thumbnail URL (first image shown on cards)</label><input type="url" id="proj-thumb"></div>
         <div class="field">
-          <label>Upload Images</label>
-          <div class="upload-area" id="upload-area"><p>Click to upload images</p></div>
+          <label>Images — Upload (hold Ctrl to select multiple) or paste URLs below</label>
+          <div class="upload-area" id="upload-area"><p>Click to upload &mdash; hold Ctrl to select multiple</p></div>
           <input type="file" id="img-input" accept="image/*" multiple style="display:none">
           <div class="media-grid" id="media-preview"></div>
+          <div id="img-url-list" style="margin-top:0.75rem;"></div>
+          <button class="btn-sm" id="add-img-url-btn" style="margin-top:0.5rem;">+ Add Image URL</button>
         </div>
-        <div class="field"><label>Video URL (YouTube embed)</label><input type="url" id="proj-video"></div>
+        <div class="field">
+          <label>Videos (YouTube embed URLs)</label>
+          <div id="video-url-list"></div>
+          <button class="btn-sm" id="add-video-btn" style="margin-top:0.5rem;">+ Add Video</button>
+        </div>
         <div class="field-row">
           <div class="field"><label>GitHub Link</label><input type="url" id="proj-github-link"></div>
           <div class="field"><label>Live Demo Link</label><input type="url" id="proj-live"></div>

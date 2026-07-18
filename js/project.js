@@ -26,11 +26,15 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
 
     document.title = `${p.title} — Portfolio`;
 
-    // Media
+    // Media — support multiple videos and image URL lists
     let mediaHTML = '';
-    if (p.video) mediaHTML += `<div class="project-media"><iframe src="${p.video}" height="420" frameborder="0" allowfullscreen></iframe></div>`;
-    const imgs = p.media?.length ? p.media : (p.thumbnail ? [p.thumbnail] : []);
-    if (imgs.length) mediaHTML += `<div class="project-media">${imgs.map(u=>`<img src="${u}" alt="${p.title}" loading="lazy">`).join('')}</div>`;
+    const videos = p.videos?.length ? p.videos : (p.video ? [p.video] : []);
+    videos.forEach(v => { mediaHTML += `<div class="project-media"><iframe src="${v}" height="420" frameborder="0" allowfullscreen></iframe></div>`; });
+    const uploadedImgs = p.media || [];
+    const urlImgs = p.imageUrls || [];
+    const allImgs = [...uploadedImgs, ...urlImgs].filter(Boolean);
+    const fallback = allImgs.length ? allImgs : (p.thumbnail ? [p.thumbnail] : []);
+    if (fallback.length) mediaHTML += `<div class="project-media">${fallback.map(u=>`<img src="${u}" alt="${p.title}" loading="lazy">`).join('')}</div>`;
 
     // Links
     const links = [];

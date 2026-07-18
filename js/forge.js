@@ -131,14 +131,38 @@ function renderProjList() {
 document.getElementById('add-proj-btn').addEventListener('click',()=>openProjEditor(null));
 document.getElementById('back-to-list-btn').addEventListener('click',closeProjEditor);
 
+// ── Dynamic row helper ────────────────────────────────────────────────
+function makeUrlRow(value, placeholder) {
+  const wrap = document.createElement('div');
+  wrap.style.cssText='display:flex;gap:0.5rem;margin-bottom:0.4rem;align-items:center;';
+  const inp = document.createElement('input');
+  inp.type='url'; inp.placeholder=placeholder; inp.value=value||'';
+  inp.style.cssText='flex:1;background:var(--bg-card);border:1px solid var(--border);color:var(--text);padding:0.5rem 0.75rem;font-size:14px;outline:none;';
+  const btn = document.createElement('button');
+  btn.className='btn-sm danger'; btn.textContent='✕';
+  btn.addEventListener('click',()=>wrap.remove());
+  wrap.appendChild(inp); wrap.appendChild(btn);
+  return wrap;
+}
+
+function addVideoRow(value='') {
+  document.getElementById('video-url-list').appendChild(makeUrlRow(value,'https://www.youtube.com/embed/...'));
+}
+function addImgUrlRow(value='') {
+  document.getElementById('img-url-list').appendChild(makeUrlRow(value,'https://... image URL'));
+}
+
 function openProjEditor(id) {
   pendingMedia=[];
   document.getElementById('proj-list-view').style.display='none';
   document.getElementById('proj-editor-view').style.display='block';
   document.getElementById('media-preview').innerHTML='';
+  document.getElementById('video-url-list').innerHTML='';
+  document.getElementById('img-url-list').innerHTML='';
+
   const p = id ? content.projects.find(x=>x.id===id) : null;
   document.getElementById('editor-heading').textContent = p ? 'Edit Project' : 'New Project';
-  document.getElementById('proj-orig-id').value   = id||'';
+  document.getElementById('proj-orig-id').value    = id||'';
   document.getElementById('delete-proj-btn').style.display = p?'inline-flex':'none';
   document.getElementById('proj-title').value      = p?.title||'';
   document.getElementById('proj-id').value         = p?.id||'';
@@ -150,10 +174,11 @@ function openProjEditor(id) {
   document.getElementById('proj-approach').value   = p?.approach||'';
   document.getElementById('proj-outcome').value    = p?.outcome||'';
   document.getElementById('proj-thumb').value      = p?.thumbnail||'';
-  document.getElementById('proj-video').value      = p?.video||'';
   document.getElementById('proj-github-link').value= p?.links?.github||'';
   document.getElementById('proj-live').value       = p?.links?.live||'';
   document.getElementById('proj-featured').checked = !!p?.featured;
+
+  // Uploaded images
   if (p?.media?.length) {
     document.getElementById('media-preview').innerHTML = p.media.map((url,i)=>`
       <div class="media-item" data-url="${url}">
@@ -165,12 +190,23 @@ function openProjEditor(id) {
       btn.closest('.media-item').remove();
     }));
   }
+
+  // Image URLs
+  (p?.imageUrls||[]).forEach(url=>addImgUrlRow(url));
+
+  // Videos — support both old single `video` field and new `videos` array
+  const vids = p?.videos?.length ? p.videos : (p?.video ? [p.video] : []);
+  vids.forEach(url=>addVideoRow(url));
 }
+
 function closeProjEditor() {
   document.getElementById('proj-list-view').style.display='block';
   document.getElementById('proj-editor-view').style.display='none';
   renderProjList();
 }
+
+document.getElementById('add-video-btn').addEventListener('click',()=>addVideoRow());
+document.getElementById('add-img-url-btn').addEventListener('click',()=>addImgUrlRow());
 
 document.getElementById('upload-area').addEventListener('click',()=>document.getElementById('img-input').click());
 document.getElementById('img-input').addEventListener('change', async function() {
@@ -198,10 +234,15 @@ document.getElementById('save-proj-btn').addEventListener('click', async () => {
   const origId=document.getElementById('proj-orig-id').value;
   const newId=document.getElementById('proj-id').value.trim().toLowerCase().replace(/\s+/g,'-');
   if(!newId){toast('Project ID required','error');return;}
+
   const existing=origId?content.projects.find(p=>p.id===origId):null;
-  const allMedia=[...(existing?.media||[]),...pendingMedia.map(m=>m.url)];
+  const uploadedMedia=[...(existing?.media||[]),...pendingMedia.map(m=>m.url)];
+  const imageUrls=[...document.getElementById('img-url-list').querySelectorAll('input')].map(i=>i.value.trim()).filter(Boolean);
+  const videos=[...document.getElementById('video-url-list').querySelectorAll('input')].map(i=>i.value.trim()).filter(Boolean);
+
   const proj={
-    id:newId, title:document.getElementById('proj-title').value,
+    id:newId,
+    title:document.getElementById('proj-title').value,
     category:document.getElementById('proj-cat').value,
     order:parseInt(document.getElementById('proj-order').value)||99,
     tags:document.getElementById('proj-tags').value.split(',').map(t=>t.trim()).filter(Boolean),
@@ -210,7 +251,9 @@ document.getElementById('save-proj-btn').addEventListener('click', async () => {
     approach:document.getElementById('proj-approach').value,
     outcome:document.getElementById('proj-outcome').value,
     thumbnail:document.getElementById('proj-thumb').value,
-    media:allMedia, video:document.getElementById('proj-video').value,
+    media:uploadedMedia,
+    imageUrls:imageUrls,
+    videos:videos,
     links:{github:document.getElementById('proj-github-link').value,live:document.getElementById('proj-live').value},
     featured:document.getElementById('proj-featured').checked
   };
