@@ -1,4 +1,3 @@
-// ⚙️ SETUP — replace these two values before deploying
 const REPO = {
   username: 'alamfaizanw-alt',
   repo:     'Faizan_portfolio',
