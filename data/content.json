@@ -157,6 +157,7 @@
       "id": "stewart-platform",
       "title": "Hand Gesture–Controlled Stewart Platform",
       "category": "Robotics",
+      "order": 1,
       "tags": [
         "Python",
         "MediaPipe",
@@ -169,14 +170,15 @@
       "approach": "Implemented real-time gesture recognition using Python and MediaPipe, mapping 6 distinct gestures to 6 degrees of freedom. Designed and iterated servo-driven parallel mechanism in Arduino. Designed all mechanical supports in OnShape.",
       "outcome": "98% gesture recognition accuracy across 6 DOF. Delivered within 50% of budget. 100+ participants operated the prototype at the final exhibition.",
       "thumbnail": "",
-      "media": [],
-      "video": "",
+      "media": [
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/stewart-platform/1784343992274.png"
+      ],
+      "video": "https://youtu.be/2wNtQbqKHQA",
       "links": {
         "github": "",
         "live": ""
       },
-      "featured": true,
-      "order": 1
+      "featured": true
     },
     {
       "id": "ros-lidar",
