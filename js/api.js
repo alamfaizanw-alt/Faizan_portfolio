@@ -1,7 +1,7 @@
 // ⚙️ SETUP — replace these two values before deploying
 const REPO = {
-  username: 'YOUR_GITHUB_USERNAME',
-  repo:     'YOUR_REPO_NAME',
+  username: 'alamfaizanw-alt',
+  repo:     'Faizan_portfolio',
   branch:   'main'
 };
 
