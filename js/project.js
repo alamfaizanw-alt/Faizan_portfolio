@@ -50,7 +50,9 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
         }</div>
       </div></div>`;
     } else if (slides.length > 1) {
-      const slideHTML = slides.map((s, i) =>
+      const PREV_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>`;
+      const NEXT_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>`;
+      const slideHTML = slides.map((s,i) =>
         `<div class="carousel-slide${i===0?' active':''}">${
           s.type === 'video'
             ? `<iframe src="${s.src}" frameborder="0" allowfullscreen></iframe>`
@@ -58,15 +60,14 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
         }</div>`
       ).join('');
       const dotsHTML = slides.map((_,i) =>
-        `<div class="carousel-dot${i===0?' active':''}" data-i="${i}"></div>`
+        `<button class="carousel-dot${i===0?' active':''}" data-i="${i}" aria-label="Slide ${i+1}"></button>`
       ).join('');
       carouselHTML = `<div class="carousel" id="proj-carousel">
-        <div class="carousel-frame">${slideHTML}</div>
-        <div class="carousel-controls">
-          <button class="carousel-btn" id="c-prev">&#8592;</button>
+        <div class="carousel-frame">
+          ${slideHTML}
+          <button class="c-prev" id="c-prev" aria-label="Previous">${PREV_SVG}</button>
+          <button class="c-next" id="c-next" aria-label="Next">${NEXT_SVG}</button>
           <div class="carousel-dots" id="carousel-dots">${dotsHTML}</div>
-          <span class="carousel-count" id="c-count">1 / ${slides.length}</span>
-          <button class="carousel-btn" id="c-next">&#8594;</button>
         </div>
       </div>`;
     }
@@ -113,25 +114,29 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
       let resumeTimer = null;
       const slideEls  = document.querySelectorAll('.carousel-slide');
       const dots      = document.querySelectorAll('.carousel-dot');
-      const count     = document.getElementById('c-count');
 
-      // Crossfade to slide n
       function goTo(n) {
-        slideEls[current].classList.remove('active');
-        dots[current].classList.remove('active');
+        const prev = slideEls[current];
         current = (n + slides.length) % slides.length;
-        slideEls[current].classList.add('active');
-        dots[current].classList.add('active');
-        count.textContent = `${current + 1} / ${slides.length}`;
+        const next = slideEls[current];
+
+        // Exit current
+        prev.classList.remove('active');
+        prev.classList.add('exit');
+        prev.addEventListener('animationend', () => prev.classList.remove('exit'), { once: true });
+
+        // Enter next
+        next.classList.add('active');
+
+        // Dots
+        dots.forEach((d,i) => d.classList.toggle('active', i === current));
       }
 
-      // Starts indefinite 4s cycle
       function startAuto() {
         clearInterval(autoTimer);
         autoTimer = setInterval(() => goTo(current + 1), 4000);
       }
 
-      // Pause and resume after 10s
       function pauseAndResume() {
         clearInterval(autoTimer);
         clearTimeout(resumeTimer);
@@ -142,9 +147,9 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
       document.getElementById('c-next').addEventListener('click', () => { goTo(current + 1); pauseAndResume(); });
       dots.forEach(d => d.addEventListener('click', () => { goTo(parseInt(d.dataset.i)); pauseAndResume(); }));
 
-      const carousel = document.getElementById('proj-carousel');
-      carousel.addEventListener('mouseenter', () => { clearInterval(autoTimer); clearTimeout(resumeTimer); });
-      carousel.addEventListener('mouseleave', () => { resumeTimer = setTimeout(startAuto, 10000); });
+      const frame = document.querySelector('#proj-carousel .carousel-frame');
+      frame.addEventListener('mouseenter', () => { clearInterval(autoTimer); clearTimeout(resumeTimer); });
+      frame.addEventListener('mouseleave', () => { resumeTimer = setTimeout(startAuto, 10000); });
 
       startAuto();
     }
