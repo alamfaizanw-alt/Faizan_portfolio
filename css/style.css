@@ -915,3 +915,9 @@ footer {
   body:not(.loaded) .hero-actions,
   body:not(.loaded) .hero .social-links { opacity: 1; transform: none; }
 }
+
+/* Two equal independent gears — stats section */
+@keyframes gearEq-1 { from{transform:translate(35px,46px) rotate(0deg);}  to{transform:translate(35px,46px) rotate(360deg);}  }
+@keyframes gearEq-2 { from{transform:translate(88px,46px) rotate(0deg);}  to{transform:translate(88px,46px) rotate(-360deg);} }
+.gear-eq1 { animation: gearEq-1 14s linear infinite; }
+.gear-eq2 { animation: gearEq-2 10s linear infinite; }
