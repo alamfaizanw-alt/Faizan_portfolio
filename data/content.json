@@ -224,7 +224,7 @@
       "challenge": "It was challenging to deliver lessons because the presentation slides could not be shown on a shared screen and the presentation files were not accessible to student devices.",
       "approach": "Developed a fully static web app, serverless, with data storage via the GitHub Contents API, student and admin portals gated by keys for access control, and an attendance system built on Google Sheets/Forms and automated via Google Apps Script.",
       "outcome": "Delivered a user-friendly web application that streamlined attendance tracking, lesson presentation access, and camp administration within a single platform.",
-      "thumbnail": "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/peie-camp-portal/1784480785131.png",
+      "thumbnail": "",
       "media": [
         "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/peie-camp-portal/1784480785131.png",
         "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/peie-camp-portal/1784481518507_0.png",
