@@ -86,9 +86,11 @@ function renderSocialLinks(links, el) {
 }
 
 function renderCard(p, idx) {
-  const outcome = p.outcome || '';
+  const outcome   = p.outcome || '';
   const challenge = p.challenge || p.summary || '';
+  const thumb     = p.thumbnail || (p.media && p.media[0]) || (p.imageUrls && p.imageUrls[0]) || '';
   return `<a href="project.html?id=${p.id}" class="project-card">
+    ${thumb ? `<div class="pc-thumb"><img src="${thumb}" alt="${p.title}" loading="lazy"></div>` : ''}
     <div class="pc-top">
       <span class="pc-cat">${p.category||''}</span>
       <span class="pc-num">0${idx+1}</span>

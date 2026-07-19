@@ -487,7 +487,67 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
   .hero-actions{flex-direction:column;align-items:flex-start;}
 }
 
-/* ── CONTACT REDESIGN ── */
+/* ── PROJECT CARD THUMBNAIL ── */
+.pc-thumb {
+  width: 100%; aspect-ratio: 16/9;
+  overflow: hidden; margin-bottom: 1.25rem;
+  background: var(--bg-hover);
+  border-bottom: 1px solid var(--border);
+}
+.pc-thumb img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.4s var(--ease);
+}
+.project-card:hover .pc-thumb img { transform: scale(1.04); }
+
+/* ── IMAGE CAROUSEL ── */
+.carousel {
+  position: relative; width: 100%;
+  margin-bottom: 2rem; overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+}
+.carousel-track {
+  display: flex; transition: transform 0.5s var(--ease);
+}
+.carousel-slide {
+  min-width: 100%; position: relative;
+}
+.carousel-slide img {
+  width: 100%; display: block;
+  max-height: 500px; object-fit: contain;
+  background: var(--bg-card);
+}
+.carousel-slide iframe {
+  width: 100%; height: 420px; border: none; display: block;
+}
+.carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(9,9,9,0.75); border: 1px solid var(--border);
+  color: var(--text); width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 16px; z-index: 2;
+  transition: background 0.2s, border-color 0.2s;
+}
+.carousel-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--bg); }
+.carousel-prev { left: 0.75rem; }
+.carousel-next { right: 0.75rem; }
+.carousel-dots {
+  display: flex; gap: 6px; justify-content: center;
+  padding: 0.75rem 0;
+}
+.carousel-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--border); cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.carousel-dot.active { background: var(--gold); transform: scale(1.3); }
+.carousel-count {
+  position: absolute; bottom: 0.6rem; right: 0.75rem;
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--text-muted); background: rgba(9,9,9,0.6);
+  padding: 2px 7px;
+}
 .contact-bold {
   text-align: center;
   padding: 7rem 2.5rem;
