@@ -112,10 +112,15 @@ const statObs = new IntersectionObserver(entries => {
         const side = i % 2 === 0 ? 'left' : 'right';
         const bullets = (e.bullets || []).map(b => `<li>${b}</li>`).join('');
         const card = `<div class="timeline-content ${side}">
-          <div class="tl-date">${e.date||''}</div>
-          <div class="tl-title">${e.title||''}</div>
-          <div class="tl-company">${e.company||''}</div>
-          ${bullets ? `<ul class="tl-bullets">${bullets}</ul>` : ''}
+          <div class="tl-inner">
+            <div class="tl-text">
+              <div class="tl-date">${e.date||''}</div>
+              <div class="tl-title">${e.title||''}</div>
+              <div class="tl-company">${e.company||''}</div>
+              ${bullets ? `<ul class="tl-bullets">${bullets}</ul>` : ''}
+            </div>
+            ${e.image ? `<div class="tl-image"><img src="${e.image}" alt="${e.title}" loading="lazy"></div>` : ''}
+          </div>
         </div>`;
         return `<div class="timeline-item">
           ${side === 'left' ? card : '<span class="timeline-empty"></span>'}

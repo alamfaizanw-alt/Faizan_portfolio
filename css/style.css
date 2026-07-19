@@ -259,6 +259,13 @@ hr.divider{border:none;border-top:1px solid var(--border);}
 .tl-bullets li::before{content:'— ';color:var(--gold-dim);}
 .timeline-content.left .tl-bullets li::before{content:'';margin:0;}
 .timeline-content.left .tl-bullets li::after{content:' —';color:var(--gold-dim);}
+/* Timeline image layout */
+.tl-inner{display:flex;gap:1rem;align-items:flex-start;}
+.tl-text{flex:1;min-width:0;}
+.tl-image{flex-shrink:0;width:110px;}
+.tl-image img{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border);display:block;}
+.timeline-content.left .tl-inner{flex-direction:row-reverse;}
+.timeline-content.left .tl-text{text-align:right;}
 
 /* ── SKILLS ── */
 .skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
@@ -698,16 +705,9 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
 }
 .deco svg { display: block; overflow: visible; }
 
-/* Gear rotation — mathematically correct ratios */
-@keyframes gearCW  { to { transform: rotate( 360deg); } }
-@keyframes gearCCW { to { transform: rotate(-360deg); } }
-
-.deco-g1 { animation: gearCW  14s linear infinite; transform-box: fill-box; transform-origin: center; }
-.deco-g2 { animation: gearCCW  9s linear infinite; transform-box: fill-box; transform-origin: center; }
-.deco-g3 { animation: gearCW   6s linear infinite; transform-box: fill-box; transform-origin: center; }
-
+/* Gear animations handled via SVG animateTransform (more reliable than CSS on SVG groups) */
 @media (prefers-reduced-motion: reduce) {
-  .deco-g1, .deco-g2, .deco-g3 { animation: none; }
+  .deco { display: none; }
 }
 
 /* Sections need position:relative for absolute deco children */

@@ -317,6 +317,7 @@ function openTlEditor(id) {
   document.getElementById('tl-date').value=e?.date||'';
   document.getElementById('tl-type').value=e?.type||'work';
   document.getElementById('tl-bullets').value=(e?.bullets||[]).join('\n');
+  document.getElementById('tl-image').value=e?.image||'';
   document.getElementById('tl-order').value=e?.order??99;
 }
 function closeTlEditor(){
@@ -334,6 +335,7 @@ document.getElementById('save-tl-btn').addEventListener('click',async()=>{
     date:document.getElementById('tl-date').value,
     type:document.getElementById('tl-type').value,
     bullets:document.getElementById('tl-bullets').value.split('\n').map(s=>s.trim()).filter(Boolean),
+    image:document.getElementById('tl-image').value,
     order:parseInt(document.getElementById('tl-order').value)||99
   };
   if(!content.timeline)content.timeline=[];
