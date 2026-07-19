@@ -211,23 +211,45 @@ document.getElementById('add-img-url-btn').addEventListener('click',()=>addImgUr
 document.getElementById('upload-area').addEventListener('click',()=>document.getElementById('img-input').click());
 document.getElementById('img-input').addEventListener('change', async function() {
   const projId = document.getElementById('proj-id').value||'temp';
-  for (const file of this.files) {
-    const reader = new FileReader();
-    reader.onload = async e => {
-      const b64=e.target.result.split(',')[1], ext=file.name.split('.').pop(), name=`${Date.now()}.${ext}`;
-      try {
-        const url = await uploadImage(projId,name,b64);
-        pendingMedia.push({url});
-        const div=document.createElement('div'); div.className='media-item'; div.dataset.url=url;
-        div.innerHTML=`<img src="${url}" alt=""><button class="media-remove">&times;</button>`;
-        div.querySelector('.media-remove').addEventListener('click',()=>{pendingMedia=pendingMedia.filter(m=>m.url!==url);div.remove();});
-        document.getElementById('media-preview').appendChild(div);
-        toast('Image uploaded','success');
-      } catch(e){toast('Upload failed: '+e.message,'error');}
-    };
-    reader.readAsDataURL(file);
+  const files  = [...this.files];
+  this.value   = '';
+  if (!files.length) return;
+
+  toast(`Uploading ${files.length} image${files.length>1?'s':''}...`);
+
+  for (let i = 0; i < files.length; i++) {
+    const file = files[i];
+    try {
+      // Read file as base64 — wrapped in a promise so we can await it
+      const b64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload  = e => resolve(e.target.result.split(',')[1]);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+
+      const ext  = file.name.split('.').pop();
+      const name = `${Date.now()}_${i}.${ext}`; // index prevents timestamp collision
+      const url  = await uploadImage(projId, name, b64); // awaited — fully sequential
+
+      pendingMedia.push({url});
+      const div = document.createElement('div');
+      div.className   = 'media-item';
+      div.dataset.url = url;
+      div.innerHTML   = `<img src="${url}" alt=""><button class="media-remove">&times;</button>`;
+      div.querySelector('.media-remove').addEventListener('click', () => {
+        pendingMedia = pendingMedia.filter(m => m.url !== url);
+        div.remove();
+      });
+      document.getElementById('media-preview').appendChild(div);
+      toast(`Uploaded ${i+1} of ${files.length}`, 'success');
+
+    } catch(e) {
+      toast(`Failed on ${file.name}: ${e.message}`, 'error');
+    }
   }
-  this.value='';
+
+  if (files.length > 1) toast(`All ${files.length} images uploaded`, 'success');
 });
 
 document.getElementById('save-proj-btn').addEventListener('click', async () => {
