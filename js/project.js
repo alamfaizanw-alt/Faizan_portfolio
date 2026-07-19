@@ -41,16 +41,17 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
 
     let carouselHTML = '';
     if (slides.length === 1) {
-      // Single item — no carousel chrome needed
       const s = slides[0];
-      carouselHTML = `<div class="project-media">${
-        s.type === 'video'
-          ? `<iframe src="${s.src}" height="420" frameborder="0" allowfullscreen></iframe>`
-          : `<img src="${s.src}" alt="${p.title}">`
-      }</div>`;
+      carouselHTML = `<div class="carousel"><div class="carousel-frame">
+        <div class="carousel-slide active">${
+          s.type === 'video'
+            ? `<iframe src="${s.src}" frameborder="0" allowfullscreen></iframe>`
+            : `<img src="${s.src}" alt="${p.title}">`
+        }</div>
+      </div></div>`;
     } else if (slides.length > 1) {
-      const slideHTML = slides.map(s =>
-        `<div class="carousel-slide">${
+      const slideHTML = slides.map((s, i) =>
+        `<div class="carousel-slide${i===0?' active':''}">${
           s.type === 'video'
             ? `<iframe src="${s.src}" frameborder="0" allowfullscreen></iframe>`
             : `<img src="${s.src}" alt="${p.title}" loading="lazy">`
@@ -60,12 +61,14 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
         `<div class="carousel-dot${i===0?' active':''}" data-i="${i}"></div>`
       ).join('');
       carouselHTML = `<div class="carousel" id="proj-carousel">
-        <div class="carousel-track" id="carousel-track">${slideHTML}</div>
-        <button class="carousel-btn carousel-prev" id="c-prev">&#8592;</button>
-        <button class="carousel-btn carousel-next" id="c-next">&#8594;</button>
-        <div class="carousel-count" id="c-count">1 / ${slides.length}</div>
-      </div>
-      <div class="carousel-dots" id="carousel-dots">${dotsHTML}</div>`;
+        <div class="carousel-frame">${slideHTML}</div>
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="c-prev">&#8592;</button>
+          <div class="carousel-dots" id="carousel-dots">${dotsHTML}</div>
+          <span class="carousel-count" id="c-count">1 / ${slides.length}</span>
+          <button class="carousel-btn" id="c-next">&#8594;</button>
+        </div>
+      </div>`;
     }
 
     // Links
@@ -105,48 +108,43 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
 
     // Init carousel
     if (slides.length > 1) {
-      let current    = 0;
-      let autoTimer  = null;
+      let current     = 0;
+      let autoTimer   = null;
       let resumeTimer = null;
-      const track = document.getElementById('carousel-track');
-      const dots  = document.querySelectorAll('.carousel-dot');
-      const count = document.getElementById('c-count');
+      const slideEls  = document.querySelectorAll('.carousel-slide');
+      const dots      = document.querySelectorAll('.carousel-dot');
+      const count     = document.getElementById('c-count');
 
-      // Just moves the carousel — no timer logic here
+      // Crossfade to slide n
       function goTo(n) {
+        slideEls[current].classList.remove('active');
+        dots[current].classList.remove('active');
         current = (n + slides.length) % slides.length;
-        track.style.transform = `translateX(-${current * 100}%)`;
-        dots.forEach((d,i) => d.classList.toggle('active', i === current));
+        slideEls[current].classList.add('active');
+        dots[current].classList.add('active');
         count.textContent = `${current + 1} / ${slides.length}`;
       }
 
-      // Starts indefinite 4s cycle from current position
+      // Starts indefinite 4s cycle
       function startAuto() {
         clearInterval(autoTimer);
         autoTimer = setInterval(() => goTo(current + 1), 4000);
       }
 
-      // Stops auto-cycle and schedules resume after 10s
+      // Pause and resume after 10s
       function pauseAndResume() {
         clearInterval(autoTimer);
         clearTimeout(resumeTimer);
         resumeTimer = setTimeout(startAuto, 10000);
       }
 
-      // Manual controls — move then schedule resume
       document.getElementById('c-prev').addEventListener('click', () => { goTo(current - 1); pauseAndResume(); });
       document.getElementById('c-next').addEventListener('click', () => { goTo(current + 1); pauseAndResume(); });
       dots.forEach(d => d.addEventListener('click', () => { goTo(parseInt(d.dataset.i)); pauseAndResume(); }));
 
-      // Hover — pause immediately, resume 10s after mouse leaves
       const carousel = document.getElementById('proj-carousel');
-      carousel.addEventListener('mouseenter', () => {
-        clearInterval(autoTimer);
-        clearTimeout(resumeTimer);
-      });
-      carousel.addEventListener('mouseleave', () => {
-        resumeTimer = setTimeout(startAuto, 10000);
-      });
+      carousel.addEventListener('mouseenter', () => { clearInterval(autoTimer); clearTimeout(resumeTimer); });
+      carousel.addEventListener('mouseleave', () => { resumeTimer = setTimeout(startAuto, 10000); });
 
       startAuto();
     }
