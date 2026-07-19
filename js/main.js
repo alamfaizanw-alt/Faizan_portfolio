@@ -63,10 +63,14 @@ const statObs = new IntersectionObserver(entries => {
     const roleEl = document.getElementById('hero-role');
     if (bio.tagline) roleEl.textContent = bio.tagline;
 
-    // Photo
+    // Photo — only show frame when a photo is actually set
     if (bio.photo) {
-      const inner = document.getElementById('photo-inner');
-      inner.innerHTML = `<img src="${bio.photo}" alt="${bio.name}">`;
+      const photoDiv = document.getElementById('photo-inner');
+      const photoWrap = document.querySelector('.hero-photo');
+      if (photoDiv && photoWrap) {
+        photoDiv.innerHTML = `<img src="${bio.photo}" alt="${bio.name}">`;
+        photoWrap.style.display = 'block';
+      }
     }
 
     // Social

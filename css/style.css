@@ -65,11 +65,10 @@ nav{
 @keyframes gridPulse{0%,100%{opacity:.45;}50%{opacity:1;}}
 
 .hero-inner{
-  width:100%;max-width:1200px;margin:0 auto;
-  display:grid;grid-template-columns:1fr auto;align-items:center;
-  gap:4rem;position:relative;z-index:1;
+  width:100%;max-width:700px;margin:0 auto;
+  position:relative;z-index:1;
 }
-.hero-left{flex:1;}
+.hero-left{width:100%;}
 .hero-eyebrow{
   font-family:var(--font-mono);font-size:11px;color:var(--gold);
   letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5rem;
@@ -102,7 +101,7 @@ nav{
 .social-link svg{width:14px;height:14px;}
 
 /* Photo frame */
-.hero-photo{position:relative;flex-shrink:0;}
+.hero-photo{display:none;} /* shown via JS when photo URL is set */
 .photo-frame{
   position:relative;
   width:clamp(200px,22vw,300px);
@@ -706,9 +705,11 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
 .deco svg { display: block; overflow: visible; }
 
 /* Gear animations — translate+rotate keyframes are the reliable approach for SVG */
+/* Center distances use pitch circle radii: G1(14T)=21, G2(9T)=13.5, G3(6T)=9 */
+/* G1 center: (38,56), G2: (38+34.5=72.5→73, 56), G3: (73, 56-22.5=33.5→34) */
 @keyframes gearCW-g1  { from{transform:translate(38px,56px) rotate(0deg);}  to{transform:translate(38px,56px) rotate(360deg);}  }
-@keyframes gearCCW-g2 { from{transform:translate(76px,56px) rotate(0deg);}  to{transform:translate(76px,56px) rotate(-360deg);} }
-@keyframes gearCW-g3  { from{transform:translate(76px,32px) rotate(0deg);}  to{transform:translate(76px,32px) rotate(360deg);}  }
+@keyframes gearCCW-g2 { from{transform:translate(73px,56px) rotate(0deg);}  to{transform:translate(73px,56px) rotate(-360deg);} }
+@keyframes gearCW-g3  { from{transform:translate(73px,34px) rotate(0deg);}  to{transform:translate(73px,34px) rotate(360deg);}  }
 @keyframes gearSpinCW { to { transform: rotate(360deg); } }
 
 .gear-g1  { animation: gearCW-g1  14s linear infinite; }
@@ -716,8 +717,20 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
 .gear-g3  { animation: gearCW-g3   6s linear infinite; }
 .gear-solo{ animation: gearSpinCW 14s linear infinite; transform-box: fill-box; transform-origin: center; }
 
+/* Robot shake animation for timeline decorations */
+@keyframes robotWiggle {
+  0%, 72%, 100% { transform: translateX(0) rotate(0deg); }
+  74% { transform: translateX(-2px) rotate(-1.5deg); }
+  76% { transform: translateX(2px) rotate(1.5deg); }
+  78% { transform: translateX(-2px) rotate(-1deg); }
+  80% { transform: translateX(1px) rotate(0.5deg); }
+  82% { transform: translateX(0) rotate(0deg); }
+}
+.robot-deco   { animation: robotWiggle 5s ease-in-out infinite; transform-box: fill-box; transform-origin: bottom center; }
+.robot-deco-2 { animation: robotWiggle 7.5s ease-in-out infinite; transform-box: fill-box; transform-origin: bottom center; }
+
 @media (prefers-reduced-motion: reduce) {
-  .gear-g1, .gear-g2, .gear-g3, .gear-solo { animation: none; }
+  .gear-g1, .gear-g2, .gear-g3, .gear-solo, .robot-deco, .robot-deco-2 { animation: none; }
 }
 
 /* Sections need position:relative for absolute deco children */
