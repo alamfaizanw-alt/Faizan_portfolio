@@ -739,3 +739,179 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
 #about         { position: relative; }
 #skills        { position: relative; }
 #contact       { position: relative; }
+
+/* ═══════════════════════════════════════════════════════════
+   PREMIUM UI LAYER
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Scroll progress ── */
+#scroll-progress {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 2px; background: var(--gold);
+  transform-origin: left; transform: scaleX(0);
+  z-index: 500; pointer-events: none;
+}
+
+/* ── Custom cursor (desktop only) ── */
+@media (hover: hover) and (pointer: fine) {
+  *, *::before, *::after { cursor: none !important; }
+
+  #c-dot {
+    position: fixed; pointer-events: none; z-index: 9999;
+    width: 5px; height: 5px;
+    background: var(--gold); border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0; transition: width .15s, height .15s, opacity .2s, background .15s;
+  }
+  #c-dot.on-hover { width: 3px; height: 3px; background: rgba(201,164,71,0.5); }
+
+  /* Square reticle — the signature element */
+  #c-rect {
+    position: fixed; pointer-events: none; z-index: 9998;
+    width: 26px; height: 26px;
+    border: 1px solid rgba(201,164,71,0.55);
+    transform: translate(-50%, -50%) rotate(0deg);
+    opacity: 0;
+    transition: width .25s var(--ease), height .25s var(--ease),
+                border-color .25s, opacity .2s;
+  }
+  #c-rect.on-hover {
+    width: 38px; height: 38px;
+    border-color: rgba(201,164,71,0.85);
+  }
+}
+
+/* ── Page load reveal ── */
+.hero-eyebrow,
+.hero-name,
+.hero-role,
+.hero-actions,
+.hero .social-links {
+  transition: opacity .75s ease, transform .75s ease;
+}
+body:not(.loaded) .hero-eyebrow  { opacity:0; transform:translateY(18px); }
+body:not(.loaded) .hero-name     { opacity:0; transform:translateY(22px); }
+body:not(.loaded) .hero-role     { opacity:0; transform:translateY(18px); }
+body:not(.loaded) .hero-actions  { opacity:0; transform:translateY(14px); }
+body:not(.loaded) .hero .social-links { opacity:0; transform:translateY(10px); }
+
+.hero-name     { transition-delay:.08s; }
+.hero-role     { transition-delay:.18s; }
+.hero-actions  { transition-delay:.30s; }
+.hero .social-links { transition-delay:.42s; }
+
+/* ── Nav underline on hover ── */
+.nav-links a { position: relative; }
+.nav-links a::after {
+  content: '';
+  position: absolute; bottom: -3px; left: 0; right: 0;
+  height: 1px; background: var(--gold);
+  transform: scaleX(0); transform-origin: right;
+  transition: transform .25s ease;
+}
+.nav-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+.nav-links a.active::after { transform: scaleX(1); }
+
+/* ── Typographic distinction on hero name ── */
+.hero-name .name-dim { font-weight: 400; letter-spacing: 0.04em; }
+.hero-name span:first-child { letter-spacing: -0.03em; }
+
+/* ── Blinking cursor after role text ── */
+.hero-role::after {
+  content: '|';
+  margin-left: 3px;
+  color: var(--gold);
+  animation: blink 1.1s step-end infinite;
+  font-weight: 300;
+}
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+
+/* ── Hero ambient glow ── */
+.hero-glow {
+  position: absolute;
+  top: 35%; left: 20%;
+  width: 600px; height: 400px;
+  background: radial-gradient(ellipse at center, rgba(201,164,71,0.055) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+  transform: translate(-50%, -50%);
+}
+
+/* ── Card left border reveal on hover ── */
+.project-card::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: 2px; background: var(--gold);
+  transform: scaleY(0); transform-origin: top;
+  transition: transform .35s var(--ease);
+  z-index: 1;
+}
+.project-card:hover::before { transform: scaleY(1); }
+
+/* ── "View Project" arrow nudge ── */
+.pc-link { transition: color .2s; letter-spacing: 0.04em; }
+.pc-link::after { content: '  →'; display: inline-block; transition: transform .2s var(--ease); }
+.project-card:hover .pc-link::after { transform: translateX(5px); }
+.project-card:hover .pc-link { color: var(--gold); }
+
+/* ── Refined outcome badge ── */
+.pc-outcome {
+  display: inline-flex; align-items: center;
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--gold); border: 1px solid var(--gold-dim);
+  padding: 3px 9px; margin-bottom: 1.1rem; letter-spacing: 0.05em;
+}
+
+/* ── Button hover glow ── */
+.btn {
+  position: relative;
+  transition: background .18s, color .18s, box-shadow .18s;
+}
+.btn:hover { box-shadow: 0 0 18px rgba(201,164,71,0.18); }
+
+/* ── Stats section number refinement ── */
+.stat-value {
+  font-size: 3.2rem; letter-spacing: -0.03em;
+}
+
+/* ── Timeline refinement ── */
+.timeline-content {
+  transition: border-color .2s, transform .2s;
+}
+.timeline-content:hover { transform: translateY(-2px); }
+
+/* ── Section label refinement ── */
+.section-label {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+}
+.section-label::before {
+  content: '';
+  width: 18px; height: 1px; background: var(--gold); display: block;
+}
+
+/* ── Footer refinement ── */
+footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.75rem 2.5rem; border-top: 1px solid var(--border);
+  flex-wrap: wrap; gap: 1rem;
+}
+.footer-tag {
+  font-family: var(--font-mono); font-size: 10px;
+  color: var(--text-dim); letter-spacing: 0.12em;
+}
+
+/* ── Page header refinement ── */
+.page-header .section-label { margin-bottom: 0.75rem; }
+.page-header h1 { font-size: 2.5rem; letter-spacing: -0.02em; }
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-eyebrow, .hero-name, .hero-role, .hero-actions, .hero .social-links {
+    opacity: 1 !important; transform: none !important;
+  }
+  .hero-role::after { animation: none; }
+  body:not(.loaded) .hero-eyebrow,
+  body:not(.loaded) .hero-name,
+  body:not(.loaded) .hero-role,
+  body:not(.loaded) .hero-actions,
+  body:not(.loaded) .hero .social-links { opacity: 1; transform: none; }
+}

@@ -159,5 +159,8 @@ const statObs = new IntersectionObserver(entries => {
 
   } catch(e) {
     console.error('Load error:', e);
+  } finally {
+    // Trigger hero reveal after content loads (or fails)
+    requestAnimationFrame(() => document.body.classList.add('loaded'));
   }
 })();
