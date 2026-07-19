@@ -688,3 +688,31 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
   .clip-both  { clip-path: polygon(0 24px,100% 0,100% calc(100% - 24px),0 100%); }
   .contact-bold { padding: 5rem 1.25rem; }
 }
+
+/* ── DECORATIVE ENGINEERING ELEMENTS ── */
+.deco {
+  position: absolute;
+  pointer-events: none;
+  z-index: 0;
+  color: var(--gold);
+}
+.deco svg { display: block; overflow: visible; }
+
+/* Gear rotation — mathematically correct ratios */
+@keyframes gearCW  { to { transform: rotate( 360deg); } }
+@keyframes gearCCW { to { transform: rotate(-360deg); } }
+
+.deco-g1 { animation: gearCW  14s linear infinite; transform-box: fill-box; transform-origin: center; }
+.deco-g2 { animation: gearCCW  9s linear infinite; transform-box: fill-box; transform-origin: center; }
+.deco-g3 { animation: gearCW   6s linear infinite; transform-box: fill-box; transform-origin: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .deco-g1, .deco-g2, .deco-g3 { animation: none; }
+}
+
+/* Section overflow clipping for decorations */
+.hero            { overflow: hidden; }
+.stats-section   { position: relative; overflow: hidden; }
+#about           { overflow: hidden; }
+#skills          { overflow: hidden; }
+#contact         { overflow: hidden; }
