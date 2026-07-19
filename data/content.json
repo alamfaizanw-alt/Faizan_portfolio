@@ -212,6 +212,7 @@
       "id": "peie-camp-portal",
       "title": "PEIE STEM Camp Portal",
       "category": "Software",
+      "order": 3,
       "tags": [
         "JavaScript",
         "GitHub Pages",
@@ -219,19 +220,21 @@
         "Google Sheets",
         "Apps Script"
       ],
-      "summary": "Full-stack camp management portal with key-gated sections and Google Sheets attendance.",
-      "challenge": "Build a complete camp management system for 6–12 year old students with no backend server — hosted entirely on GitHub Pages.",
-      "approach": "Built using GitHub Contents API for persistence, key-gated student and admin sections, and a Google Sheets/Forms attendance system with an Apps Script trigger.",
-      "outcome": "Deployed and actively used for live camp operations with multiple student cohorts.",
+      "summary": "Full-stack camp management portal with key-gated sections for eah class and Google Sheets attendance that auto checks in students after they are signed in..",
+      "challenge": "It was challenging to deliver lessons because the presentation slides could not be shown on a shared screen and the presentation files were not accessible to student devices.",
+      "approach": "Developed a fully static web app, serverless, with data storage via the GitHub Contents API, student and admin portals gated by keys for access control, and an attendance system built on Google Sheets/Forms and automated via Google Apps Script.",
+      "outcome": "Delivered a user-friendly web application that streamlined attendance tracking, lesson presentation access, and camp administration within a single platform.",
       "thumbnail": "",
-      "media": [],
-      "video": "",
+      "media": [
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/peie-camp-portal/1784480785131.png"
+      ],
+      "imageUrls": [],
+      "videos": [],
       "links": {
         "github": "",
         "live": ""
       },
-      "featured": false,
-      "order": 3
+      "featured": true
     },
     {
       "id": "workflow-assist",
