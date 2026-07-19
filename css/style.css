@@ -705,9 +705,19 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
 }
 .deco svg { display: block; overflow: visible; }
 
-/* Gear animations handled via SVG animateTransform (more reliable than CSS on SVG groups) */
+/* Gear animations — translate+rotate keyframes are the reliable approach for SVG */
+@keyframes gearCW-g1  { from{transform:translate(38px,56px) rotate(0deg);}  to{transform:translate(38px,56px) rotate(360deg);}  }
+@keyframes gearCCW-g2 { from{transform:translate(76px,56px) rotate(0deg);}  to{transform:translate(76px,56px) rotate(-360deg);} }
+@keyframes gearCW-g3  { from{transform:translate(76px,32px) rotate(0deg);}  to{transform:translate(76px,32px) rotate(360deg);}  }
+@keyframes gearSpinCW { to { transform: rotate(360deg); } }
+
+.gear-g1  { animation: gearCW-g1  14s linear infinite; }
+.gear-g2  { animation: gearCCW-g2  9s linear infinite; }
+.gear-g3  { animation: gearCW-g3   6s linear infinite; }
+.gear-solo{ animation: gearSpinCW 14s linear infinite; transform-box: fill-box; transform-origin: center; }
+
 @media (prefers-reduced-motion: reduce) {
-  .deco { display: none; }
+  .gear-g1, .gear-g2, .gear-g3, .gear-solo { animation: none; }
 }
 
 /* Sections need position:relative for absolute deco children */
