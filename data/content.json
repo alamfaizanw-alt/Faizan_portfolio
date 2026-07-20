@@ -95,19 +95,6 @@
       ],
       "image": "",
       "order": 7
-    },
-    {
-      "id": "ontario-tech",
-      "title": "B.Eng. Mechatronics (Hons)",
-      "company": "Ontario Tech University",
-      "date": "Sept 2019–Apr 2024",
-      "type": "education",
-      "bullets": [
-        "Graduated with co-op designation",
-        "Capstone: Hand Gesture–Controlled Stewart Platform — 98% accuracy, delivered within 50% of budget"
-      ],
-      "image": "",
-      "order": 6
     }
   ],
   "skills": [
