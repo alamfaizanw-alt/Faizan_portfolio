@@ -58,7 +58,13 @@ const statObs = new IntersectionObserver(entries => {
     const nameEl = document.getElementById('hero-name');
     if (bio.name) {
       const parts = bio.name.trim().split(' ');
-      nameEl.innerHTML = parts.map((p,i) => `<span${i===parts.length-1?' class="name-dim"':''}>${p}</span>`).join('');
+      if (bio.photo) {
+        // Photo present: stacked name (one word per line)
+        nameEl.innerHTML = parts.map((p,i) => `<span${i===parts.length-1?' class="name-dim"':''}>${p}</span>`).join('');
+      } else {
+        // No photo: single-line name, surname dimmed
+        nameEl.innerHTML = parts.map((p,i) => `<span style="display:inline"${i===parts.length-1?' class="name-dim"':''}>${p}</span>`).join(' ');
+      }
     }
     const roleEl = document.getElementById('hero-role');
     if (bio.tagline) roleEl.textContent = bio.tagline;
