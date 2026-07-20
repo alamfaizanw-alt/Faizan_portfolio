@@ -923,15 +923,15 @@ footer {
 .gear-eq2 { animation: gearEq-2 10s linear infinite; }
 
 /* Chain & sprocket animation — stats section */
-/* Sprocket ratio 12T:8T — small spins 1.5x faster, same direction (chain drive) */
-@keyframes sprocket1 { from{transform:translate(32px,40px) rotate(0deg);} to{transform:translate(32px,40px) rotate(360deg);} }
-@keyframes sprocket2 { from{transform:translate(95px,40px) rotate(0deg);} to{transform:translate(95px,40px) rotate(360deg);} }
-.sprocket-1 { animation: sprocket1 15s linear infinite; }
-.sprocket-2 { animation: sprocket2 10s linear infinite; }
-/* Chain links travel along the path */
-.chain-path { animation: chainRun 1.4s linear infinite; }
-@keyframes chainRun { to { stroke-dashoffset: -7; } }
+/* 14T drive : 9T driven — same direction (chain drive), driven spins 14/9 faster */
+@keyframes sprocket1 { from{transform:translate(36px,44px) rotate(0deg);} to{transform:translate(36px,44px) rotate(360deg);} }
+@keyframes sprocket2 { from{transform:translate(100px,44px) rotate(0deg);} to{transform:translate(100px,44px) rotate(360deg);} }
+.sprocket-1 { animation: sprocket1 15.6s linear infinite; }
+.sprocket-2 { animation: sprocket2 10s   linear infinite; }
+/* Roller dots travel around the chain loop */
+.chain-rollers { animation: chainRun 2.2s linear infinite; }
+@keyframes chainRun { to { stroke-dashoffset: -6.6; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .sprocket-1, .sprocket-2, .chain-path { animation: none; }
+  .sprocket-1, .sprocket-2, .chain-rollers { animation: none; }
 }
