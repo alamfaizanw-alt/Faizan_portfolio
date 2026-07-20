@@ -100,7 +100,7 @@
   ],
   "skills": [
     {
-      "category": "Programming",
+      "category": "Programming Languages",
       "items": [
         "Python",
         "Java",
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "category": "ML / AI",
+      "category": "ML / AI Technologies",
       "items": [
         "TensorFlow",
         "OpenCV",
@@ -122,18 +122,18 @@
       ]
     },
     {
-      "category": "Robotics",
+      "category": "Robotics Systems and Technologies",
       "items": [
         "ROS",
         "PID Control",
-        "FRC",
-        "VEX IQ",
+        "FIRST",
+        "VEX",
         "LiDAR",
         "Embedded Systems"
       ]
     },
     {
-      "category": "CAD & Tools",
+      "category": "CAD & Software Tools",
       "items": [
         "SolidWorks",
         "OnShape",
