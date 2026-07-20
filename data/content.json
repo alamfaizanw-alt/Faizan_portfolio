@@ -84,6 +84,18 @@
       "order": 4
     },
     {
+      "id": "outlier",
+      "title": "AI Data Trainer & Evaluator",
+      "company": "Outlier",
+      "date": "Aug 2024–Oct 2024",
+      "type": "work",
+      "bullets": [
+        "Evaluated LLM outputs against structured test suites; contributed to 50% improvement in model response relevancy"
+      ],
+      "image": "",
+      "order": 5
+    },
+    {
       "id": "ontario-tech",
       "title": "B.Eng. Mechatronics (Hons)",
       "company": "Ontario Tech University",
@@ -95,17 +107,6 @@
       ],
       "image": "",
       "order": 7
-    },
-    {
-      "id": "outlier",
-      "title": "AI Data Trainer & Evaluator",
-      "company": "Outlier",
-      "date": "Aug 2024–Oct 2024",
-      "type": "work",
-      "bullets": [
-        "Evaluated LLM outputs against structured test suites; contributed to 50% improvement in model response relevancy"
-      ],
-      "order": 6
     }
   ],
   "skills": [
