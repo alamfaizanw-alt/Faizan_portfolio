@@ -69,20 +69,7 @@
         "Evaluated LLM outputs against structured test suites; contributed to 50% improvement in model response relevancy"
       ],
       "image": "",
-      "order": 5
-    },
-    {
-      "id": "wiz-dev",
-      "title": "Programming & Robotics Developer",
-      "company": "Wiz Robotics",
-      "date": "Oct 2021–Present",
-      "type": "work",
-      "bullets": [
-        "Engineered 30+ coding projects as training material; developed HTML/CSS lessons improving engagement by 35%",
-        "Mentored 50+ students in Java, Arduino, Python — covering OOP, PID control, sensors, and multi-subsystem architectures"
-      ],
-      "image": "",
-      "order": 8
+      "order": 3
     },
     {
       "id": "wiz-lead",
@@ -96,6 +83,19 @@
       ],
       "image": "",
       "order": 7
+    },
+    {
+      "id": "wiz-dev",
+      "title": "Programming & Robotics Developer",
+      "company": "Wiz Robotics",
+      "date": "Oct 2021–Present",
+      "type": "work",
+      "bullets": [
+        "Engineered 30+ coding projects as training material; developed HTML/CSS lessons improving engagement by 35%",
+        "Mentored 50+ students in Java, Arduino, Python — covering OOP, PID control, sensors, and multi-subsystem architectures"
+      ],
+      "image": "",
+      "order": 8
     }
   ],
   "skills": [
