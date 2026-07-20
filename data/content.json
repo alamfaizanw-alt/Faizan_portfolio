@@ -56,7 +56,8 @@
         "Designed 3D CAD models of mechanical systems including gearboxes, bar lifts, and drivetrains in OnShape",
         "Built and tested example robots as teaching aids, validating designs through iterative physical testing"
       ],
-      "order": 2
+      "image": "",
+      "order": 3
     },
     {
       "id": "wiz-dev",
