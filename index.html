@@ -120,30 +120,31 @@
   <!-- Decorative: gear cluster -->
   <div class="deco" style="right:20px;bottom:20px;width:240px;opacity:0.18;">
     <svg viewBox="0 0 122 90" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
-      <!-- Chain band: outer + inner edge -->
-      <path d="M 39.3 20.7 L 102.0 29.6 A 14.5 14.5 0 1 1 102.0 58.4 L 39.3 67.3 A 23.5 23.5 0 1 1 39.3 20.7 Z" stroke-width="4.6" opacity="0.35"/>
-      <path d="M 39.3 20.7 L 102.0 29.6 A 14.5 14.5 0 1 1 102.0 58.4 L 39.3 67.3 A 23.5 23.5 0 1 1 39.3 20.7 Z" stroke-width="1"/>
-      <!-- Chain rollers: dots traveling along the path -->
-      <path class="chain-rollers" d="M 39.3 20.7 L 102.0 29.6 A 14.5 14.5 0 1 1 102.0 58.4 L 39.3 67.3 A 23.5 23.5 0 1 1 39.3 20.7 Z" stroke-width="2.4" stroke-dasharray="0.1 6.5" opacity="0.9"/>
-      <!-- Drive sprocket (large, 14T) -->
+      <!-- Belt: band + crisp edge + motion dashes -->
+      <path d="M 39.1 22.2 L 101.8 31.1 A 13.0 13.0 0 1 1 101.8 56.9 L 39.1 65.8 A 22.0 22.0 0 1 1 39.1 22.2 Z" stroke-width="3.6" opacity="0.3"/>
+      <path d="M 39.1 22.2 L 101.8 31.1 A 13.0 13.0 0 1 1 101.8 56.9 L 39.1 65.8 A 22.0 22.0 0 1 1 39.1 22.2 Z" stroke-width="1"/>
+      <path class="belt-motion" d="M 39.1 22.2 L 101.8 31.1 A 13.0 13.0 0 1 1 101.8 56.9 L 39.1 65.8 A 22.0 22.0 0 1 1 39.1 22.2 Z" stroke-width="1.8" stroke-dasharray="7 9" opacity="0.55"/>
+      <!-- Drive pulley (large) -->
       <g class="sprocket-1">
-        <path d="M 0.0 -21.0 Q 1.9 -17.1 3.6 -15.6 Q 5.7 -16.3 9.1 -18.9 L 9.1 -18.9 Q 9.2 -14.6 10.0 -12.5 Q 12.2 -12.2 16.4 -13.1 L 16.4 -13.1 Q 14.6 -9.2 14.4 -6.9 Q 16.3 -5.7 20.5 -4.7 L 20.5 -4.7 Q 17.1 -1.9 16.0 0.0 Q 17.1 1.9 20.5 4.7 L 20.5 4.7 Q 16.3 5.7 14.4 6.9 Q 14.6 9.2 16.4 13.1 L 16.4 13.1 Q 12.2 12.2 10.0 12.5 Q 9.2 14.6 9.1 18.9 L 9.1 18.9 Q 5.7 16.3 3.6 15.6 Q 1.9 17.1 0.0 21.0 L 0.0 21.0 Q -1.9 17.1 -3.6 15.6 Q -5.7 16.3 -9.1 18.9 L -9.1 18.9 Q -9.2 14.6 -10.0 12.5 Q -12.2 12.2 -16.4 13.1 L -16.4 13.1 Q -14.6 9.2 -14.4 6.9 Q -16.3 5.7 -20.5 4.7 L -20.5 4.7 Q -17.1 1.9 -16.0 0.0 Q -17.1 -1.9 -20.5 -4.7 L -20.5 -4.7 Q -16.3 -5.7 -14.4 -6.9 Q -14.6 -9.2 -16.4 -13.1 L -16.4 -13.1 Q -12.2 -12.2 -10.0 -12.5 Q -9.2 -14.6 -9.1 -18.9 L -9.1 -18.9 Q -5.7 -16.3 -3.6 -15.6 Q -1.9 -17.1 -0.0 -21.0 Z"/>
-        <circle r="13"/>
-        <circle r="5.5"/>
-        <circle cx="10.0" cy="0.0" r="2.6" stroke-width="0.9"/>
-        <circle cx="7.1" cy="7.1" r="2.6" stroke-width="0.9"/>
-        <circle cx="0.0" cy="10.0" r="2.6" stroke-width="0.9"/>
-        <circle cx="-7.1" cy="7.1" r="2.6" stroke-width="0.9"/>
-        <circle cx="-10.0" cy="0.0" r="2.6" stroke-width="0.9"/>
-        <circle cx="-7.1" cy="-7.1" r="2.6" stroke-width="0.9"/>
-        <circle cx="-0.0" cy="-10.0" r="2.6" stroke-width="0.9"/>
-        <circle cx="7.1" cy="-7.1" r="2.6" stroke-width="0.9"/>
+        <circle r="21"/>
+        <circle r="17" stroke-width="0.8"/>
+        <line x1="0.0" y1="-6.5" x2="0.0" y2="-17.0" stroke-width="1.4"/>
+        <line x1="6.2" y1="-2.0" x2="16.2" y2="-5.3" stroke-width="1.4"/>
+        <line x1="3.8" y1="5.3" x2="10.0" y2="13.8" stroke-width="1.4"/>
+        <line x1="-3.8" y1="5.3" x2="-10.0" y2="13.8" stroke-width="1.4"/>
+        <line x1="-6.2" y1="-2.0" x2="-16.2" y2="-5.3" stroke-width="1.4"/>
+        <circle r="6.5"/>
+        <circle r="2.5" opacity="0.6"/>
+        <line x1="-2.5" y1="0" x2="2.5" y2="0" stroke-width="0.8" opacity="0.6"/>
       </g>
-      <!-- Driven sprocket (small, 9T) -->
+      <!-- Driven pulley (small) -->
       <g class="sprocket-2">
-        <path d="M 0.0 -12.0 Q 1.7 -9.7 2.9 -8.0 Q 4.9 -8.5 7.7 -9.2 L 7.7 -9.2 Q 7.5 -6.3 7.4 -4.2 Q 9.2 -3.4 11.8 -2.1 L 11.8 -2.1 Q 9.8 -0.0 8.4 1.5 Q 9.2 3.4 10.4 6.0 L 10.4 6.0 Q 7.5 6.3 5.5 6.5 Q 4.9 8.5 4.1 11.3 L 4.1 11.3 Q 1.7 9.7 0.0 8.5 Q -1.7 9.7 -4.1 11.3 L -4.1 11.3 Q -4.9 8.5 -5.5 6.5 Q -7.5 6.3 -10.4 6.0 L -10.4 6.0 Q -9.2 3.4 -8.4 1.5 Q -9.8 0.0 -11.8 -2.1 L -11.8 -2.1 Q -9.2 -3.4 -7.4 -4.2 Q -7.5 -6.3 -7.7 -9.2 L -7.7 -9.2 Q -4.9 -8.5 -2.9 -8.0 Q -1.7 -9.7 -0.0 -12.0 Z"/>
-        <circle r="5.5"/>
-        <circle r="2.5" opacity="0.5"/>
+        <circle r="12"/>
+        <circle r="9" stroke-width="0.8"/>
+        <line x1="0" y1="-9" x2="0" y2="9" stroke-width="1.2"/>
+        <line x1="-9" y1="0" x2="9" y2="0" stroke-width="1.2"/>
+        <circle r="3.5"/>
+        <circle r="1.4" opacity="0.6"/>
       </g>
     </svg>
   </div>

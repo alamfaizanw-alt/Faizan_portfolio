@@ -926,12 +926,12 @@ footer {
 /* 14T drive : 9T driven — same direction (chain drive), driven spins 14/9 faster */
 @keyframes sprocket1 { from{transform:translate(36px,44px) rotate(0deg);} to{transform:translate(36px,44px) rotate(360deg);} }
 @keyframes sprocket2 { from{transform:translate(100px,44px) rotate(0deg);} to{transform:translate(100px,44px) rotate(360deg);} }
-.sprocket-1 { animation: sprocket1 15.6s linear infinite; }
+.sprocket-1 { animation: sprocket1 16.9s linear infinite; }
 .sprocket-2 { animation: sprocket2 10s   linear infinite; }
 /* Roller dots travel around the chain loop */
-.chain-rollers { animation: chainRun 2.2s linear infinite; }
-@keyframes chainRun { to { stroke-dashoffset: -6.6; } }
+.belt-motion { animation: beltRun 1.6s linear infinite; }
+@keyframes beltRun { to { stroke-dashoffset: -16; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .sprocket-1, .sprocket-2, .chain-rollers { animation: none; }
+  .sprocket-1, .sprocket-2, .belt-motion { animation: none; }
 }
