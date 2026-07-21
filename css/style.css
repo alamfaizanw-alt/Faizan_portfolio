@@ -935,3 +935,25 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   .sprocket-1, .sprocket-2, .belt-motion { animation: none; }
 }
+
+/* ── DECORATION RESPONSIVE SCALING ──
+   Desktop untouched. Tablets shrink decorations; phones hide the
+   ones that would sit under full-width content. !important is
+   required to override the inline positioning styles. */
+
+@media (max-width: 900px) {
+  /* Shrink + fade everything so text always wins */
+  .deco-arm    { width: 110px !important; opacity: 0.10 !important; }
+  .deco-pulley { width: 150px !important; opacity: 0.10 !important; bottom: 8px !important; }
+  .deco-elec   { width: 100px !important; opacity: 0.10 !important; bottom: 10px !important; }
+  .deco-gear   { width: 110px !important; opacity: 0.07 !important; top: 12px !important; right: 12px !important; }
+  /* Timeline cards go full-width on mobile — these would sit under text */
+  .deco-car, .deco-bot1, .deco-bot2 { display: none !important; }
+}
+
+@media (max-width: 480px) {
+  /* Phones: keep only the hero arm and stats pulleys, tiny and faint */
+  .deco-arm    { width: 85px !important; opacity: 0.08 !important; bottom: 12px !important; left: 8px !important; }
+  .deco-pulley { width: 110px !important; opacity: 0.08 !important; }
+  .deco-elec, .deco-gear { display: none !important; }
+}
