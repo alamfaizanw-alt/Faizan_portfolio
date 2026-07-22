@@ -957,29 +957,3 @@ footer {
   .deco-pulley { width: 110px !important; opacity: 0.08 !important; }
   .deco-elec, .deco-gear { display: none !important; }
 }
-
-/* ── Scroll hoist rig = the scrollbar ── */
-#scroll-rig {
-  position: fixed;
-  top: 60px; right: 0; bottom: 0;
-  width: 56px;
-  z-index: 5;
-  color: #E0DDD6;
-  opacity: 0.4;
-  cursor: pointer;
-  touch-action: none;
-  transition: opacity 0.25s;
-}
-#scroll-rig:hover { opacity: 0.75; }
-#scroll-rig svg { display: block; }
-#scroll-rig .rig-load { transition: none; }
-
-/* Hide native scrollbar — the rig replaces it */
-@media (min-width: 901px) {
-  html { scrollbar-width: none; }
-  ::-webkit-scrollbar { width: 0; height: 0; display: none; }
-  footer { padding-right: 76px; }
-}
-@media (max-width: 900px) {
-  #scroll-rig { display: none; }
-}
