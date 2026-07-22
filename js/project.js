@@ -26,8 +26,18 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
 
     document.title = `${p.title} — Portfolio`;
 
+    // Normalize any YouTube URL format (share, watch, embed, typos) to a working embed URL
+    function normalizeVideo(url) {
+      if (!url) return '';
+      const u = url.trim();
+      // Try to find an 11-char YouTube video ID in any common format
+      const m = u.match(/(?:youtu\.be\/|watch\?v=|embed\/?|shorts\/)([A-Za-z0-9_-]{11})/) ||
+                u.match(/([A-Za-z0-9_-]{11})(?:\?|&|$)/);
+      return m ? `https://www.youtube.com/embed/${m[1]}` : u;
+    }
+
     // Build media carousel — combine all videos and images
-    const videos  = p.videos?.length ? p.videos : (p.video ? [p.video] : []);
+    const videos  = (p.videos?.length ? p.videos : (p.video ? [p.video] : [])).map(normalizeVideo).filter(Boolean);
     const uploaded = p.media || [];
     const urlImgs  = p.imageUrls || [];
     const allImgs  = [...uploaded, ...urlImgs].filter(Boolean);
