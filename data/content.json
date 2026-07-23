@@ -276,7 +276,10 @@
       "approach": "",
       "outcome": "",
       "thumbnail": "",
-      "media": [],
+      "media": [
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/robotics/1784785216107_0.jpeg",
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/robotics/1784785217625_1.jpeg"
+      ],
       "imageUrls": [],
       "videos": [
         "https://youtu.be/hAsbS8CW-Dk",
