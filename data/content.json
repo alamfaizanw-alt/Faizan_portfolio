@@ -182,6 +182,7 @@
       "id": "ros-lidar",
       "title": "Mobile Robotics — ROS / LiDAR",
       "category": "Robotics",
+      "order": 2,
       "tags": [
         "ROS",
         "Linux",
@@ -194,14 +195,18 @@
       "approach": "Co-developed ROS-based TurtleBot implementing path planning, trajectory following, colour and object recognition. Scripted LiDAR-based navigation simulations for a skid-steer vehicle separately.",
       "outcome": "Completed all milestone demos in under 3 minutes. Ranked in the top 10% of the class.",
       "thumbnail": "",
-      "media": [],
-      "video": "",
+      "media": [
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/ros-lidar/1784775904793_0.png"
+      ],
+      "imageUrls": [],
+      "videos": [
+        "https://youtu.be/4kJjkDx2iCA"
+      ],
       "links": {
         "github": "",
         "live": ""
       },
-      "featured": true,
-      "order": 2
+      "featured": true
     },
     {
       "id": "peie-camp-portal",
