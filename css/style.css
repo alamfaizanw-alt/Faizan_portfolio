@@ -451,11 +451,9 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr;gap:2.5rem;}
-  .hero-photo{display:flex;justify-content:center;}
-  .photo-frame{width:clamp(160px,50vw,220px);}
-  .hero-inner{direction:rtl;}
-  .hero-inner>*{direction:ltr;}
+  /* photo stays hidden unless a photo is set (JS shows it inline) */
+  .hero-photo{margin:2rem auto 0;}
+  .photo-frame{width:clamp(160px,50vw,220px);margin:0 auto;}
   .about-grid{grid-template-columns:1fr;}
   .stats-grid{grid-template-columns:repeat(2,1fr);}
   .stat-item{border-bottom:1px solid var(--border);}
@@ -980,4 +978,12 @@ footer {
   .deco-car, .deco-bot2 { display: none !important; }
   .deco-elec { width: 110px !important; opacity: 0.10 !important; bottom: 8px !important; }
   .deco-arm  { width: 120px !important; opacity: 0.12 !important; }
+}
+
+/* Robot 1 clears the section heading on narrower desktops */
+@media (max-width: 1500px) {
+  .deco-bot1 { top: 380px !important; left: 24px !important; }
+}
+@media (max-width: 1180px) {
+  .deco-bot1 { display: none !important; }
 }
