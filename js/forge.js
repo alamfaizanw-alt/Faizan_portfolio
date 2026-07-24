@@ -77,20 +77,29 @@ function populateBio() {
   document.getElementById('bio-resume').value   = b.links?.resume||'';
 }
 
-function populateStats() {
-  const stats = content.stats || [
-    {value:10,suffix:'+',label:'Years FIRST Robotics'},
-    {value:50,suffix:'+',label:'Students Mentored'},
-    {value:3,suffix:'',label:'FRC Teams to Provincials'},
-    {value:6,suffix:'+',label:'Projects Deployed'}
-  ];
-  document.getElementById('stats-editor').innerHTML = stats.map((s,i) => `
-    <div class="field-3col" style="margin-bottom:0.5rem;">
-      <div class="field" style="margin:0;"><label>Value</label><input type="number" id="stat-val-${i}" value="${s.value}"></div>
-      <div class="field" style="margin:0;"><label>Suffix</label><input type="text" id="stat-suf-${i}" value="${s.suffix||''}" placeholder="+"></div>
-      <div class="field" style="margin:0;"><label>Label</label><input type="text" id="stat-lbl-${i}" value="${s.label}"></div>
-    </div>`).join('');
+function statRow(s) {
+  const row = document.createElement('div');
+  row.className = 'stat-row';
+  row.style.cssText = 'display:grid;grid-template-columns:1fr 1fr 2fr auto;gap:0.75rem;margin-bottom:0.5rem;align-items:end;';
+  row.innerHTML = `
+    <div class="field" style="margin:0;"><label>Value</label><input type="number" class="stat-val" value="${s.value ?? 0}"></div>
+    <div class="field" style="margin:0;"><label>Suffix</label><input type="text" class="stat-suf" value="${s.suffix||''}" placeholder="+"></div>
+    <div class="field" style="margin:0;"><label>Label</label><input type="text" class="stat-lbl" value="${s.label||''}"></div>
+    <button class="btn-sm danger" style="height:34px;">✕</button>`;
+  row.querySelector('button').addEventListener('click', () => row.remove());
+  return row;
 }
+
+function populateStats() {
+  const stats = content.stats || [];
+  const el = document.getElementById('stats-editor');
+  el.innerHTML = '';
+  stats.forEach(s => el.appendChild(statRow(s)));
+}
+
+document.getElementById('add-stat-btn').addEventListener('click', () => {
+  document.getElementById('stats-editor').appendChild(statRow({value:0,suffix:'+',label:''}));
+});
 
 document.getElementById('save-bio-btn').addEventListener('click', async () => {
   content.bio = {
@@ -105,12 +114,11 @@ document.getElementById('save-bio-btn').addEventListener('click', async () => {
       resume:   document.getElementById('bio-resume').value
     }
   };
-  const statsCount = document.querySelectorAll('[id^="stat-val-"]').length;
-  content.stats = Array.from({length:statsCount},(_,i) => ({
-    value:  parseInt(document.getElementById(`stat-val-${i}`).value)||0,
-    suffix: document.getElementById(`stat-suf-${i}`).value,
-    label:  document.getElementById(`stat-lbl-${i}`).value
-  }));
+  content.stats = [...document.querySelectorAll('#stats-editor .stat-row')].map(row => ({
+    value:  parseInt(row.querySelector('.stat-val').value) || 0,
+    suffix: row.querySelector('.stat-suf').value,
+    label:  row.querySelector('.stat-lbl').value
+  })).filter(s => s.label);
   await save('Bio & stats updated');
 });
 
@@ -350,25 +358,34 @@ document.getElementById('delete-tl-btn').addEventListener('click',async()=>{
 });
 
 // ── SKILLS ────────────────────────────────────────────────────────────
-function populateSkills() {
-  const skills=content.skills||[
-    {category:'Programming',items:['Python','Java','C++','Arduino','HTML/CSS']},
-    {category:'ML / AI',items:['TensorFlow','OpenCV','MediaPipe','CNNs','LLMs']},
-    {category:'Robotics',items:['ROS','PID Control','FRC','VEX IQ','LiDAR']},
-    {category:'CAD & Tools',items:['SolidWorks','OnShape','Fusion 360','Git','Linux']}
-  ];
-  document.getElementById('skills-editor').innerHTML=skills.map((s,i)=>`
-    <div class="field-row" style="margin-bottom:0.75rem;">
-      <div class="field" style="margin:0;"><label>Category ${i+1}</label><input type="text" id="skill-cat-${i}" value="${s.category}"></div>
-      <div class="field" style="margin:0;"><label>Items (comma-separated)</label><input type="text" id="skill-items-${i}" value="${(s.items||[]).join(', ')}"></div>
-    </div>`).join('');
+function skillRow(s) {
+  const row = document.createElement('div');
+  row.className = 'skill-row';
+  row.style.cssText = 'display:grid;grid-template-columns:1fr 2fr auto;gap:0.75rem;margin-bottom:0.75rem;align-items:end;';
+  row.innerHTML = `
+    <div class="field" style="margin:0;"><label>Category</label><input type="text" class="skill-cat" value="${s.category||''}"></div>
+    <div class="field" style="margin:0;"><label>Items (comma-separated)</label><input type="text" class="skill-items" value="${(s.items||[]).join(', ')}"></div>
+    <button class="btn-sm danger" style="height:34px;">✕</button>`;
+  row.querySelector('button').addEventListener('click', () => row.remove());
+  return row;
 }
+
+function populateSkills() {
+  const skills = content.skills || [];
+  const el = document.getElementById('skills-editor');
+  el.innerHTML = '';
+  skills.forEach(s => el.appendChild(skillRow(s)));
+}
+
+document.getElementById('add-skill-btn').addEventListener('click', () => {
+  document.getElementById('skills-editor').appendChild(skillRow({category:'',items:[]}));
+});
+
 document.getElementById('save-skills-btn').addEventListener('click',async()=>{
-  const count=document.querySelectorAll('[id^="skill-cat-"]').length;
-  content.skills=Array.from({length:count},(_,i)=>({
-    category:document.getElementById(`skill-cat-${i}`).value,
-    items:document.getElementById(`skill-items-${i}`).value.split(',').map(s=>s.trim()).filter(Boolean)
-  }));
+  content.skills = [...document.querySelectorAll('#skills-editor .skill-row')].map(row => ({
+    category: row.querySelector('.skill-cat').value,
+    items: row.querySelector('.skill-items').value.split(',').map(s=>s.trim()).filter(Boolean)
+  })).filter(s => s.category);
   await save('Skills updated');
 });
 

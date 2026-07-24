@@ -176,7 +176,7 @@ nav{
 /* ── STATS ── */
 .stats-section{background:var(--bg-section);}
 .stats-grid{
-  display:grid;grid-template-columns:repeat(4,1fr);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
   border:1px solid var(--border);
   max-width:900px;margin:0 auto;
 }
@@ -267,7 +267,7 @@ hr.divider{border:none;border-top:1px solid var(--border);}
 .timeline-content.left .tl-text{text-align:right;}
 
 /* ── SKILLS ── */
-.skills-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--border);}
 .skill-card{background:var(--bg-card);padding:1.75rem;}
 .skill-card-label{
   font-family:var(--font-mono);font-size:10px;color:var(--gold);
@@ -956,4 +956,28 @@ footer {
   .deco-arm    { width: 85px !important; opacity: 0.08 !important; bottom: 12px !important; left: 8px !important; }
   .deco-pulley { width: 110px !important; opacity: 0.08 !important; }
   .deco-elec, .deco-gear { display: none !important; }
+}
+
+
+}
+
+
+/* ── DECORATION COLLISION GUARDS ──
+   Content column is 1100px (stats 900px) centered. Below these
+   widths the side decorations would reach the text, so they
+   shrink first, then hide. Desktop look unchanged above 1500px. */
+@media (max-width: 1500px) {
+  .deco-pulley { width: 160px !important; bottom: 6px !important; opacity: 0.12 !important; }
+}
+@media (max-width: 1240px) {
+  .deco-pulley { display: none !important; }
+  .deco-gear   { width: 120px !important; opacity: 0.08 !important; }
+}
+@media (max-width: 1320px) {
+  .deco-car, .deco-bot1, .deco-bot2 { opacity: 0.09 !important; }
+}
+@media (max-width: 1180px) {
+  .deco-car, .deco-bot2 { display: none !important; }
+  .deco-elec { width: 110px !important; opacity: 0.10 !important; bottom: 8px !important; }
+  .deco-arm  { width: 120px !important; opacity: 0.12 !important; }
 }
