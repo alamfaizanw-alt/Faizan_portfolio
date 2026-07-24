@@ -163,12 +163,15 @@
       "outcome": "98% gesture recognition accuracy across 6 DOF. Delivered within 50% of budget. 100+ participants operated the prototype at the final exhibition.",
       "thumbnail": "",
       "media": [
-        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/stewart-platform/1784343992274.png"
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/stewart-platform/1784343992274.png",
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/stewart-platform/1784775869598_0.png",
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/stewart-platform/1784785352438_0.jpeg"
       ],
       "imageUrls": [],
       "videos": [
         "https://youtu.be/2wNtQbqKHQA",
-        "https://youtu.be/2wNtQbqKHQA"
+        "https://youtu.be/u7XGoNeeqUE",
+        "https://youtube.com/shorts/iKHDmKlxnKU"
       ],
       "links": {
         "github": "",
@@ -180,6 +183,7 @@
       "id": "ros-lidar",
       "title": "Mobile Robotics — ROS / LiDAR",
       "category": "Robotics",
+      "order": 2,
       "tags": [
         "ROS",
         "Linux",
@@ -192,14 +196,18 @@
       "approach": "Co-developed ROS-based TurtleBot implementing path planning, trajectory following, colour and object recognition. Scripted LiDAR-based navigation simulations for a skid-steer vehicle separately.",
       "outcome": "Completed all milestone demos in under 3 minutes. Ranked in the top 10% of the class.",
       "thumbnail": "",
-      "media": [],
-      "video": "",
+      "media": [
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/ros-lidar/1784775904793_0.png"
+      ],
+      "imageUrls": [],
+      "videos": [
+        "https://youtu.be/4kJjkDx2iCA"
+      ],
       "links": {
         "github": "",
         "live": ""
       },
-      "featured": true,
-      "order": 2
+      "featured": true
     },
     {
       "id": "peie-camp-portal",
@@ -254,6 +262,36 @@
       },
       "featured": false,
       "order": 4
+    },
+    {
+      "id": "robotics",
+      "title": "FRC Mentor",
+      "category": "Robotics",
+      "order": 7,
+      "tags": [
+        "Robotics",
+        "Mentoring"
+      ],
+      "summary": "Mentored student led teams to develop robots that were able to intake, transfer and shoot game pieces, both autonomously and driver controlled. Also assisted in the presentation preperation for Judging in order to present the student's brilliance and exceptional work. ",
+      "challenge": "",
+      "approach": "",
+      "outcome": "",
+      "thumbnail": "",
+      "media": [
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/robotics/1784785216107_0.jpeg",
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/robotics/1784785217625_1.jpeg"
+      ],
+      "imageUrls": [],
+      "videos": [
+        "https://youtu.be/hAsbS8CW-Dk",
+        "https://youtube.com/shorts/IJwdR1Doc50?feature=share",
+        "https://youtube.com/shorts/rDicMOOptCc?feature=share"
+      ],
+      "links": {
+        "github": "",
+        "live": ""
+      },
+      "featured": true
     }
   ],
   "categories": [
