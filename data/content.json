@@ -243,6 +243,7 @@
       "id": "workflow-assist",
       "title": "Work Flow Assist PWA",
       "category": "Software",
+      "order": 4,
       "tags": [
         "JavaScript",
         "PWA",
@@ -254,14 +255,17 @@
       "approach": "Built a PWA with Eisenhower-style priority engine, guided task estimator, and a Daily Assistant planner with Focus and Spread modes using localStorage persistence.",
       "outcome": "Fully functional offline-capable PWA. Used daily for personal task management.",
       "thumbnail": "",
-      "media": [],
-      "video": "",
+      "media": [
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/workflow-assist/1785213383508_0.png",
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/workflow-assist/1785213436907_0.png"
+      ],
+      "imageUrls": [],
+      "videos": [],
       "links": {
         "github": "",
         "live": ""
       },
-      "featured": false,
-      "order": 4
+      "featured": false
     },
     {
       "id": "robotics",
