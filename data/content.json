@@ -257,10 +257,13 @@
       "thumbnail": "",
       "media": [
         "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/workflow-assist/1785213383508_0.png",
-        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/workflow-assist/1785213436907_0.png"
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/workflow-assist/1785471246933_0.png",
+        "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/workflow-assist/1785471319232_0.png"
       ],
       "imageUrls": [],
-      "videos": [],
+      "videos": [
+        "https://youtu.be/Gw0o7ZQPbFo"
+      ],
       "links": {
         "github": "",
         "live": ""
