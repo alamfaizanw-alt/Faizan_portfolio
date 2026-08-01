@@ -40,7 +40,9 @@ let activeFilter = 'All';
 
 function render() {
   const filtered = activeFilter === 'All' ? allProjects : allProjects.filter(p => p.category === activeFilter);
-  document.getElementById('projects-grid').innerHTML = filtered.length
+  const g = document.getElementById('projects-grid');
+  g.innerHTML = filtered.length
     ? filtered.map((p,i) => renderCard(p, i)).join('')
     : '<div class="empty-state"><h3>Nothing here yet.</h3></div>';
+  if (filtered.length) initRail(g);
 }

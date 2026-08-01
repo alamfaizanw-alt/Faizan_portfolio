@@ -89,19 +89,26 @@ function renderCard(p, idx) {
   const outcome   = p.outcome || '';
   const challenge = p.challenge || p.summary || '';
   const thumb     = p.thumbnail || (p.media && p.media[0]) || (p.imageUrls && p.imageUrls[0]) || '';
+  const num       = String(idx + 1).padStart(2, '0');
   return `<a href="project.html?id=${p.id}" class="project-card">
-    ${thumb ? `<div class="pc-thumb"><img src="${thumb}" alt="${p.title}" loading="lazy"></div>` : ''}
-    <div class="pc-top">
-      <span class="pc-cat">${p.category||''}</span>
-      <span class="pc-num">0${idx+1}</span>
+    <div class="pc-media">
+      ${thumb
+        ? `<img src="${thumb}" alt="${p.title}" loading="lazy">`
+        : `<div class="pc-media-empty"></div>`}
     </div>
-    <div class="pc-title">${p.title}</div>
-    ${challenge ? `<div class="pc-challenge">
-      <div class="pc-challenge-label">The Challenge</div>
-      <div class="pc-challenge-text">${challenge}</div>
-    </div>` : ''}
-    ${outcome ? `<div class="pc-outcome">&rarr; ${outcome}</div>` : ''}
-    <div class="pc-tags">${(p.tags||[]).slice(0,4).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
-    <div class="pc-link">View Project</div>
+    <div class="pc-body">
+      <div class="pc-top">
+        <span class="pc-cat">${p.category||''}</span>
+        <span class="pc-num">${num}</span>
+      </div>
+      <div class="pc-title">${p.title}</div>
+      ${challenge ? `<div class="pc-challenge">
+        <div class="pc-challenge-label">The Challenge</div>
+        <div class="pc-challenge-text">${challenge}</div>
+      </div>` : ''}
+      ${outcome ? `<div class="pc-outcome">&rarr; ${outcome}</div>` : ''}
+      <div class="pc-tags">${(p.tags||[]).slice(0,5).map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="pc-link">View Project</div>
+    </div>
   </a>`;
 }

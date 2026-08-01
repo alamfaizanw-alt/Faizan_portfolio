@@ -161,6 +161,7 @@ const statObs = new IntersectionObserver(entries => {
       grid.innerHTML = featured.length
         ? featured.map((p,i) => renderCard(p,i)).join('')
         : '<div class="empty-state"><p>No featured projects yet.</p></div>';
+      if (featured.length) initRail(grid);
     }
 
   } catch(e) {
