@@ -285,9 +285,11 @@ hr.divider{border:none;border-top:1px solid var(--border);}
 
 /* ── PROJECT CARDS (upgraded) ── */
 .projects-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
   gap:1px;background:var(--border);border:1px solid var(--border);
 }
+/* 1–2 projects: cap width so a lone card doesn't stretch oddly wide */
+.projects-grid:has(> .project-card:only-child){grid-template-columns:minmax(310px,420px);}
 .project-card{
   background:var(--bg-card);padding:2rem;
   display:block;cursor:pointer;position:relative;

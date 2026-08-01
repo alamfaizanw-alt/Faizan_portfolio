@@ -33,7 +33,7 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
       // Try to find an 11-char YouTube video ID in any common format
       const m = u.match(/(?:youtu\.be\/|watch\?v=|embed\/?|shorts\/)([A-Za-z0-9_-]{11})/) ||
                 u.match(/([A-Za-z0-9_-]{11})(?:\?|&|$)/);
-      return m ? `https://www.youtube.com/embed/${m[1]}` : u;
+      return m ? `https://www.youtube.com/embed/${m[1]}?enablejsapi=1&playsinline=1&rel=0` : u;
     }
 
     // Build media carousel — combine all videos and images
@@ -55,7 +55,7 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
       carouselHTML = `<div class="carousel"><div class="carousel-frame">
         <div class="carousel-slide active">${
           s.type === 'video'
-            ? `<iframe src="${s.src}" frameborder="0" allowfullscreen></iframe>`
+            ? `<iframe src="${s.src}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>`
             : `<img src="${s.src}" alt="${p.title}">`
         }</div>
       </div></div>`;
@@ -65,7 +65,7 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
       const slideHTML = slides.map((s,i) =>
         `<div class="carousel-slide${i===0?' active':''}">${
           s.type === 'video'
-            ? `<iframe src="${s.src}" frameborder="0" allowfullscreen></iframe>`
+            ? `<iframe src="${s.src}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>`
             : `<img src="${s.src}" alt="${p.title}" loading="lazy">`
         }</div>`
       ).join('');
@@ -125,8 +125,21 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
       const slideEls  = document.querySelectorAll('.carousel-slide');
       const dots      = document.querySelectorAll('.carousel-dot');
 
+      // Stop any playing video in a slide (YouTube JS API, with src-reset fallback)
+      function stopMedia(slideEl) {
+        const f = slideEl.querySelector('iframe');
+        if (!f) return;
+        try {
+          f.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+        } catch (e) { /* cross-origin — fall through */ }
+        // Hard stop: re-assign src. Kills audio even if the API call didn't land.
+        const src = f.src;
+        f.src = src;
+      }
+
       function goTo(n) {
         const prev = slideEls[current];
+        stopMedia(prev);
         current = (n + slides.length) % slides.length;
         const next = slideEls[current];
 
