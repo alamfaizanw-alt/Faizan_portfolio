@@ -8,35 +8,53 @@ function initRail(grid) {
   const cards = [...grid.querySelectorAll('.project-card')];
   if (!cards.length) return;
 
-  // Remove any previous controls (re-init on filter change)
-  const wrap = grid.parentElement;
-  wrap.querySelector('.rail-nav')?.remove();
+  // Wrap the rail so arrows can overlay its exact height
+  let wrap = grid.closest('.rail-wrap');
+  if (!wrap) {
+    wrap = document.createElement('div');
+    wrap.className = 'rail-wrap';
+    grid.parentElement.insertBefore(wrap, grid);
+    wrap.appendChild(grid);
+  }
+  // Clear previous controls (re-init on filter change)
+  wrap.querySelectorAll('.rail-btn').forEach(b => b.remove());
+  wrap.parentElement.querySelector('.rail-nav')?.remove();
   if (cards.length < 2) return;              // nothing to navigate
 
   const ARROW_L = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>`;
   const ARROW_R = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>`;
 
+  // Arrow panels overlay the rail itself
+  wrap.insertAdjacentHTML('beforeend',
+    `<button class="rail-btn" data-dir="-1" aria-label="Previous project">${ARROW_L}</button>
+     <button class="rail-btn" data-dir="1" aria-label="Next project">${ARROW_R}</button>`);
+
+  // Dots sit centred beneath the rail
   const nav = document.createElement('div');
   nav.className = 'rail-nav';
   nav.innerHTML = `
-    <button class="rail-btn" data-dir="-1" aria-label="Previous project">${ARROW_L}</button>
-    <button class="rail-btn" data-dir="1" aria-label="Next project">${ARROW_R}</button>
     <div class="rail-dots">${cards.map((_, i) =>
       `<button class="rail-dot${i === 0 ? ' active' : ''}" data-i="${i}" aria-label="Project ${i + 1}"></button>`
     ).join('')}</div>
     <span class="rail-count"><span class="rail-cur">1</span> / ${cards.length}</span>`;
-  grid.insertAdjacentElement('afterend', nav);
+  wrap.insertAdjacentElement('afterend', nav);
 
   const dots = [...nav.querySelectorAll('.rail-dot')];
-  const btns = [...nav.querySelectorAll('.rail-btn')];
+  const btns = [...wrap.querySelectorAll('.rail-btn')];
   const cur  = nav.querySelector('.rail-cur');
+
+  // Match arrow panel height to the cards (exclude the scroll padding)
+  function sizeArrows() {
+    const h = cards[0].getBoundingClientRect().height;
+    btns.forEach(b => b.style.height = h + 'px');
+  }
 
   // Which card is nearest the centre of the viewport
   function activeIndex() {
-    const mid = grid.scrollLeft + grid.clientWidth / 2;
+    const left = grid.scrollLeft;
     let best = 0, bestD = Infinity;
     cards.forEach((c, i) => {
-      const d = Math.abs((c.offsetLeft + c.offsetWidth / 2) - mid);
+      const d = Math.abs((c.offsetLeft - grid.offsetLeft) - left);
       if (d < bestD) { bestD = d; best = i; }
     });
     return best;
@@ -44,10 +62,7 @@ function initRail(grid) {
 
   function scrollToCard(i) {
     const c = cards[Math.max(0, Math.min(cards.length - 1, i))];
-    grid.scrollTo({
-      left: c.offsetLeft - (grid.clientWidth - c.offsetWidth) / 2,
-      behavior: 'smooth'
-    });
+    grid.scrollTo({ left: c.offsetLeft - grid.offsetLeft, behavior: 'smooth' });
   }
 
   function sync() {
@@ -102,6 +117,9 @@ function initRail(grid) {
     if (e.key === 'ArrowLeft')  { e.preventDefault(); scrollToCard(activeIndex() - 1); }
   });
 
+  sizeArrows();
   sync();
-  window.addEventListener('resize', sync);
+  window.addEventListener('resize', () => { sizeArrows(); sync(); });
+  // Cards can resize once images load
+  if (window.ResizeObserver) new ResizeObserver(sizeArrows).observe(cards[0]);
 }
