@@ -206,6 +206,41 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
       wrap.addEventListener('mouseenter', () => { clearInterval(autoTimer); clearTimeout(resumeTimer); });
       wrap.addEventListener('mouseleave', () => { resumeTimer = setTimeout(startAuto, 10000); });
 
+
+      // ── Hide rail controls while a video is playing ──
+      // YouTube posts state changes when enablejsapi=1. State 1 = playing.
+      function setPlaying(on) { wrap.classList.toggle('playing', on); }
+
+      // Ask each player to report state changes to us
+      function subscribe() {
+        wrap.querySelectorAll('iframe').forEach(f => {
+          try {
+            f.contentWindow.postMessage(JSON.stringify({
+              event: 'listening', id: 1, channel: 'widget'
+            }), '*');
+            f.contentWindow.postMessage(JSON.stringify({
+              event: 'command', func: 'addEventListener',
+              args: ['onStateChange'], id: 1, channel: 'widget'
+            }), '*');
+          } catch (err) {}
+        });
+      }
+      window.addEventListener('message', ev => {
+        if (!/youtube\.com$/.test(new URL(ev.origin).hostname.replace(/^www\./,''))) return;
+        let d; try { d = JSON.parse(ev.data); } catch (err) { return; }
+        const state = d && (d.info && typeof d.info.playerState === 'number'
+                      ? d.info.playerState
+                      : (typeof d.info === 'number' ? d.info : null));
+        if (state === null) return;
+        if (state === 1) { setPlaying(true); clearInterval(autoTimer); clearTimeout(resumeTimer); }
+        if (state === 2 || state === 0) { setPlaying(false); pauseAndResume(); }
+      });
+      // Re-subscribe whenever iframes are (re)loaded
+      wrap.querySelectorAll('iframe').forEach(f => f.addEventListener('load', subscribe));
+      setTimeout(subscribe, 900);
+      // Leaving a slide always clears the playing state
+      rail.addEventListener('scroll', () => setPlaying(false), { passive: true });
+
       sizeArrows(); sync(); startAuto();
       window.addEventListener('resize', () => { sizeArrows(); sync(); });
       if (window.ResizeObserver) new ResizeObserver(sizeArrows).observe(items[0]);

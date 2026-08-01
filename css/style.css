@@ -986,3 +986,48 @@ footer {
   .deco-bot1:hover .bot-antenna,
   .deco-bot2:hover .bot-antenna{animation:none;}
 }
+
+/* ── CONTACT (restored) ── */
+.contact-bold {
+  text-align: center;
+  padding: 7rem 2.5rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.contact-statement {
+  font-family: var(--font-head);
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+.contact-statement em { color: var(--gold); font-style: normal; }
+.contact-sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin: 0 auto 3rem;
+  line-height: 1.75;
+}
+.contact-email {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 2.5vw, 1.4rem);
+  color: var(--text);
+  border-bottom: 1px solid var(--gold-dim);
+  padding-bottom: 0.25rem;
+  margin-bottom: 2.5rem;
+  transition: color 0.2s, border-color 0.2s;
+  letter-spacing: -0.01em;
+}
+.contact-email:hover { color: var(--gold); border-color: var(--gold); }
+.contact-socials { display: flex; gap: 0.75rem; justify-content: center; }
+.contact-socials .social-link { width: 44px; height: 44px; }
+.contact-socials .social-link svg { width: 18px; height: 18px; }
+
+/* ── Rail controls fade out while a video is playing ── */
+.media-rail-wrap.playing .rail-btn{opacity:0;pointer-events:none;}
+.media-rail-wrap.playing + .rail-nav{opacity:0;pointer-events:none;}
+.media-rail-wrap + .rail-nav{transition:opacity .35s;}
