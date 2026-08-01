@@ -51,37 +51,26 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
 
     let carouselHTML = '';
     if (slides.length === 1) {
-      const s = slides[0];
-      carouselHTML = `<div class="carousel"><div class="carousel-frame">
-        <div class="carousel-slide active">${
-          s.type === 'video'
-            ? `<iframe src="${s.src}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>`
-            : `<img src="${s.src}" alt="${p.title}">`
+      const s0 = slides[0];
+      carouselHTML = `<div class="media-rail-wrap"><div class="media-rail single">
+        <div class="media-slide">${
+          s0.type === 'video'
+            ? `<iframe src="${s0.src}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>`
+            : `<img src="${s0.src}" alt="${p.title}">`
         }</div>
       </div></div>`;
     } else if (slides.length > 1) {
-      const PREV_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>`;
-      const NEXT_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>`;
-      const slideHTML = slides.map((s,i) =>
-        `<div class="carousel-slide${i===0?' active':''}">${
-          s.type === 'video'
-            ? `<iframe src="${s.src}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>`
-            : `<img src="${s.src}" alt="${p.title}" loading="lazy">`
+      const slideHTML = slides.map(sl =>
+        `<div class="media-slide">${
+          sl.type === 'video'
+            ? `<iframe src="${sl.src}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" allowfullscreen></iframe>`
+            : `<img src="${sl.src}" alt="${p.title}" loading="lazy">`
         }</div>`
       ).join('');
-      const dotsHTML = slides.map((_,i) =>
-        `<button class="carousel-dot${i===0?' active':''}" data-i="${i}" aria-label="Slide ${i+1}"></button>`
-      ).join('');
-      carouselHTML = `<div class="carousel" id="proj-carousel">
-        <div class="carousel-frame">
-          ${slideHTML}
-          <button class="c-prev" id="c-prev" aria-label="Previous">${PREV_SVG}</button>
-          <button class="c-next" id="c-next" aria-label="Next">${NEXT_SVG}</button>
-          <div class="carousel-dots" id="carousel-dots">${dotsHTML}</div>
-        </div>
+      carouselHTML = `<div class="media-rail-wrap" id="media-wrap">
+        <div class="media-rail" id="media-rail">${slideHTML}</div>
       </div>`;
     }
-
     // Links
     const links = [];
     if (p.links?.github) links.push(`<a href="${p.links.github}" class="btn" target="_blank">GitHub &rarr;</a>`);
@@ -117,64 +106,109 @@ document.querySelectorAll('#year').forEach(el => el.textContent = new Date().get
       ${links.length ? `<div class="project-links">${links.join('')}</div>` : ''}
     `;
 
-    // Init carousel
+    // ── Media rail — same interaction model as the project rails ──
     if (slides.length > 1) {
-      let current     = 0;
-      let autoTimer   = null;
-      let resumeTimer = null;
-      const slideEls  = document.querySelectorAll('.carousel-slide');
-      const dots      = document.querySelectorAll('.carousel-dot');
+      const rail  = document.getElementById('media-rail');
+      const wrap  = document.getElementById('media-wrap');
+      const items = [...rail.querySelectorAll('.media-slide')];
 
-      // Stop any playing video in a slide (YouTube JS API, with src-reset fallback)
-      function stopMedia(slideEl) {
-        const f = slideEl.querySelector('iframe');
+      const AL = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>`;
+      const AR = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>`;
+      wrap.insertAdjacentHTML('beforeend',
+        `<button class="rail-btn" data-dir="-1" aria-label="Previous">${AL}</button>` +
+        `<button class="rail-btn" data-dir="1" aria-label="Next">${AR}</button>`);
+
+      const nav = document.createElement('div');
+      nav.className = 'rail-nav';
+      nav.innerHTML =
+        `<div class="rail-dots">` +
+        items.map((_, i) => `<button class="rail-dot${i===0?' active':''}" data-i="${i}" aria-label="Item ${i+1}"></button>`).join('') +
+        `</div><span class="rail-count"><span class="rail-cur">1</span> / ${items.length}</span>`;
+      wrap.insertAdjacentElement('afterend', nav);
+
+      const dots = [...nav.querySelectorAll('.rail-dot')];
+      const btns = [...wrap.querySelectorAll('.rail-btn')];
+      const cur  = nav.querySelector('.rail-cur');
+      let last = 0, autoTimer = null, resumeTimer = null;
+
+      function sizeArrows() {
+        const h = items[0].getBoundingClientRect().height;
+        btns.forEach(b => { b.style.height = h + 'px'; });
+      }
+      function activeIndex() {
+        const l = rail.scrollLeft;
+        let best = 0, bestD = Infinity;
+        items.forEach((c, i) => {
+          const d = Math.abs((c.offsetLeft - rail.offsetLeft) - l);
+          if (d < bestD) { bestD = d; best = i; }
+        });
+        return best;
+      }
+      function goTo(i) {
+        const c = items[Math.max(0, Math.min(items.length - 1, i))];
+        rail.scrollTo({ left: c.offsetLeft - rail.offsetLeft, behavior: 'smooth' });
+      }
+      // Kill audio/video on any slide we leave
+      function stopMedia(el) {
+        const f = el && el.querySelector('iframe');
         if (!f) return;
-        try {
-          f.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
-        } catch (e) { /* cross-origin — fall through */ }
-        // Hard stop: re-assign src. Kills audio even if the API call didn't land.
-        const src = f.src;
-        f.src = src;
+        try { f.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*'); } catch (err) {}
+        const src = f.src; f.src = src;
       }
-
-      function goTo(n) {
-        const prev = slideEls[current];
-        stopMedia(prev);
-        current = (n + slides.length) % slides.length;
-        const next = slideEls[current];
-
-        // Exit current
-        prev.classList.remove('active');
-        prev.classList.add('exit');
-        prev.addEventListener('animationend', () => prev.classList.remove('exit'), { once: true });
-
-        // Enter next
-        next.classList.add('active');
-
-        // Dots
-        dots.forEach((d,i) => d.classList.toggle('active', i === current));
+      function sync() {
+        const i = activeIndex();
+        if (i !== last) { stopMedia(items[last]); last = i; }
+        dots.forEach((d, n) => d.classList.toggle('active', n === i));
+        cur.textContent = i + 1;
+        btns[0].disabled = rail.scrollLeft <= 2;
+        btns[1].disabled = rail.scrollLeft >= rail.scrollWidth - rail.clientWidth - 2;
       }
-
       function startAuto() {
         clearInterval(autoTimer);
-        autoTimer = setInterval(() => goTo(current + 1), 4000);
+        autoTimer = setInterval(() => {
+          const i = activeIndex();
+          goTo(i >= items.length - 1 ? 0 : i + 1);
+        }, 4000);
       }
-
       function pauseAndResume() {
-        clearInterval(autoTimer);
-        clearTimeout(resumeTimer);
+        clearInterval(autoTimer); clearTimeout(resumeTimer);
         resumeTimer = setTimeout(startAuto, 10000);
       }
 
-      document.getElementById('c-prev').addEventListener('click', () => { goTo(current - 1); pauseAndResume(); });
-      document.getElementById('c-next').addEventListener('click', () => { goTo(current + 1); pauseAndResume(); });
-      dots.forEach(d => d.addEventListener('click', () => { goTo(parseInt(d.dataset.i)); pauseAndResume(); }));
+      btns.forEach(b => b.addEventListener('click', () => { goTo(activeIndex() + Number(b.dataset.dir)); pauseAndResume(); }));
+      dots.forEach(d => d.addEventListener('click', () => { goTo(Number(d.dataset.i)); pauseAndResume(); }));
 
-      const frame = document.querySelector('#proj-carousel .carousel-frame');
-      frame.addEventListener('mouseenter', () => { clearInterval(autoTimer); clearTimeout(resumeTimer); });
-      frame.addEventListener('mouseleave', () => { resumeTimer = setTimeout(startAuto, 10000); });
+      let raf;
+      rail.addEventListener('scroll', () => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => { raf = null; sync(); });
+      }, { passive: true });
 
-      startAuto();
+      let down = false, sx = 0, ss = 0;
+      rail.addEventListener('pointerdown', ev => {
+        if (ev.pointerType === 'touch') return;
+        down = true; sx = ev.clientX; ss = rail.scrollLeft;
+        rail.classList.add('dragging');
+      });
+      rail.addEventListener('pointermove', ev => {
+        if (!down) return;
+        rail.scrollLeft = ss - (ev.clientX - sx);
+      });
+      function endDrag() {
+        if (!down) return;
+        down = false; rail.classList.remove('dragging');
+        goTo(activeIndex()); pauseAndResume();
+      }
+      rail.addEventListener('pointerup', endDrag);
+      rail.addEventListener('pointercancel', endDrag);
+      rail.addEventListener('pointerleave', endDrag);
+
+      wrap.addEventListener('mouseenter', () => { clearInterval(autoTimer); clearTimeout(resumeTimer); });
+      wrap.addEventListener('mouseleave', () => { resumeTimer = setTimeout(startAuto, 10000); });
+
+      sizeArrows(); sync(); startAuto();
+      window.addEventListener('resize', () => { sizeArrows(); sync(); });
+      if (window.ResizeObserver) new ResizeObserver(sizeArrows).observe(items[0]);
     }
   } catch(e) {
     document.getElementById('project-content').innerHTML = '<div class="empty-state"><p>Failed to load.</p><a href="work.html">Back</a></div>';
