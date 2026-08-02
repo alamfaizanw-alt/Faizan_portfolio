@@ -223,9 +223,9 @@
         "Apps Script"
       ],
       "summary": "Full-stack camp management portal with key-gated sections for eah class and Google Sheets attendance that auto checks in students after they are signed in..",
-      "challenge": "It was challenging to deliver lessons because the presentation slides could not be shown on a shared screen and the presentation files were not accessible to student devices.",
-      "approach": "Developed a fully static web app, serverless, with data storage via the GitHub Contents API, student and admin portals gated by keys for access control, and an attendance system built on Google Sheets/Forms and automated via Google Apps Script.",
-      "outcome": "Delivered a user-friendly web application that streamlined attendance tracking, lesson presentation access, and camp administration within a single platform.",
+      "challenge": "Faced challenges delivering lessons due to limited access to presentation materials, as slides could not be displayed on a shared screen and presentation files were unavailable on student devices. Adapted lesson delivery strategies to ensure students could still access the required information and remain engaged throughout the sessions.\n",
+      "approach": "Developed a fully static, serverless web application utilizing the **GitHub Contents API** for data storage and management. Implemented secure student and administrator portals with key-based access control, along with an automated attendance tracking system integrated with **Google Sheets, Google Forms, and Google Apps Script** to streamline data collection and management.\n",
+      "outcome": "Delivered a user-friendly web application that centralized camp operations by streamlining attendance tracking, lesson material access, and administrative workflows within a single, integrated platform.",
       "thumbnail": "",
       "media": [
         "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/peie-camp-portal/1784480785131.png",
