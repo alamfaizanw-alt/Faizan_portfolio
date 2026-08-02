@@ -252,9 +252,9 @@
         "Eisenhower Matrix"
       ],
       "summary": "Personal productivity PWA with priority engine, task estimator, and daily planner.",
-      "challenge": "Create a client-side productivity tool that works offline and persists data without any backend infrastructure.",
-      "approach": "Built a PWA with Eisenhower-style priority engine, guided task estimator, and a Daily Assistant planner with Focus and Spread modes using localStorage persistence.",
-      "outcome": "Fully functional offline-capable PWA. Used daily for personal task management.",
+      "challenge": "Developed a fully client-side productivity tool capable of operating offline while maintaining persistent data storage without requiring backend infrastructure. Designed an efficient local data management system to ensure reliable access, seamless user experience, and data retention across sessions.\n",
+      "approach": "Developed a **Progressive Web App (PWA)** featuring an Eisenhower Matrix-based priority engine, a guided task estimation system, and a Daily Assistant planner with **Focus** and **Spread** modes. Implemented **localStorage-based persistence** to enable offline functionality, reliable data retention, and a seamless user experience without backend dependencies.\n",
+      "outcome": "Delivered a fully functional **offline-capable Progressive Web App (PWA)** designed for personal productivity and task management. The application was deployed for daily use, demonstrating reliable performance, persistent data storage, and practical usability in real-world scenarios.\n",
       "thumbnail": "",
       "media": [
         "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/workflow-assist/1785213383508_0.png",
