@@ -193,9 +193,9 @@
         "Path Planning"
       ],
       "summary": "ROS-based TurtleBot for autonomous navigation, object detection, and LiDAR path planning.",
-      "challenge": "Implement autonomous navigation, colour recognition, and object detection on a mobile robot platform using ROS on Linux.",
-      "approach": "Co-developed ROS-based TurtleBot implementing path planning, trajectory following, colour and object recognition. Scripted LiDAR-based navigation simulations for a skid-steer vehicle separately.",
-      "outcome": "Completed all milestone demos in under 3 minutes. Ranked in the top 10% of the class.",
+      "challenge": "Develop an autonomous mobile robot platform using ROS on Linux, integrating navigation, colour recognition, and object detection capabilities. Implement robotic perception and control systems to enable the robot to interpret its environment, identify objects, and navigate autonomously through complex scenarios.",
+      "approach": "Co-developed a **ROS-based TurtleBot** system integrating path planning, trajectory tracking, colour recognition, and object detection. Programmed and tested autonomous navigation algorithms while separately developing **LiDAR-based navigation simulations** for a skid-steer vehicle to evaluate motion planning and obstacle avoidance.\n",
+      "outcome": "Successfully completed all milestone demonstrations within 3 minutes, showcasing efficient system integration and reliable autonomous performance. Achieved a ranking within the top 10% of the class through strong technical execution, problem-solving, and project implementation.",
       "thumbnail": "",
       "media": [
         "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/ros-lidar/1784775904793_0.png"
