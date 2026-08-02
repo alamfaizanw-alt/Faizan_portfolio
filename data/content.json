@@ -152,15 +152,16 @@
       "order": 1,
       "tags": [
         "Python",
+        "Arduino",
+        "Actuators",
         "MediaPipe",
         "Machine Learning",
-        "OnShape",
-        "Arduino"
+        "OnShape"
       ],
       "summary": "6-DOF Stewart platform with real-time hand gesture recognition at 98% accuracy.",
-      "challenge": "Build a 6-DOF motion control system using natural hand gestures — without commercial motion capture hardware and within a tight budget.",
-      "approach": "Implemented real-time gesture recognition using Python and MediaPipe, mapping 6 distinct gestures to 6 degrees of freedom. Designed and iterated servo-driven parallel mechanism in Arduino. Designed all mechanical supports in OnShape.",
-      "outcome": "98% gesture recognition accuracy across 6 DOF. Delivered within 50% of budget. 100+ participants operated the prototype at the final exhibition.",
+      "challenge": "Develop a low-cost six-degree-of-freedom (6-DOF) motion control system for a Stewart platform using natural hand gestures, while maintaining a total project budget of under CAD $1,000. The system must accurately recognize complex hand gestures without relying on commercial motion-capture hardware. These gestures must be translated into smooth and precise control of all six degrees of freedom. \n\nSurge, sway, heave, roll, pitch, and yaw, in real time. Also there is the challenge of maintaining platform stability, minimizing latency, and ensuring accurate motion despite the complexity of coordinating six actuators simultaneously.",
+      "approach": "Developed a real-time hand gesture recognition system in Python using MediaPipe, mapping six distinct gestures to the Stewart platform's six degrees of freedom (surge, sway, heave, roll, pitch, and yaw) with low-latency control.\n\nDesigned, programmed, and iteratively optimized a servo-driven 6-DOF Stewart platform using Arduino, improving motion accuracy, stability, and responsiveness through multiple hardware and software iterations.\n\nEngineered and modelled some of the structural components and custom mounting hardware in Onshape, producing a cost-effective mechanical design suitable for fabrication and assembly.",
+      "outcome": "98% gesture recognition accuracy across 6 DOF with all 6 actuators. \n\nDelivered within 50% of the total budget, including replacement purchases. \n\nGarnered multiple praises, including from the 100+ participants who operated the final prototype at the Capstone exhibition.",
       "thumbnail": "",
       "media": [
         "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/stewart-platform/1784343992274.png",
