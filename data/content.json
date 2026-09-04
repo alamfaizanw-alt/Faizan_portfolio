@@ -193,9 +193,9 @@
         "Path Planning"
       ],
       "summary": "ROS-based TurtleBot for autonomous navigation, object detection, and LiDAR path planning.",
-      "challenge": "Develop an autonomous mobile robot platform using ROS on Linux, integrating navigation, colour recognition, and object detection capabilities.\n\nImplement robotic perception and control systems to enable the robot to interpret its environment, identify objects, and navigate autonomously through complex scenarios.",
-      "approach": "Co-developed a ROS-based TurtleBot system integrating path planning, trajectory tracking, colour recognition, and object detection. \n\nCo-programmed and tested autonomous navigation algorithms while separately developing LiDAR-based navigation simulations for a skid-steer vehicle to evaluate motion planning and obstacle avoidance.\n",
-      "outcome": "Successfully completed all milestone demonstrations within 3 minutes, showcasing efficient system integration and reliable autonomous performance.\n\nAchieved a ranking within the top 10% of the class through strong technical execution, problem-solving, and project implementation.",
+      "challenge": "Develop an autonomous mobile robot platform using ROS on Linux, integrating navigation, colour recognition, and object detection capabilities.\n\n\nImplement robotic perception and control systems to enable the robot to interpret its environment, identify objects, and navigate autonomously through complex scenarios.",
+      "approach": "Co-developed a ROS-based TurtleBot system integrating path planning, trajectory tracking, colour recognition, and object detection. \n\n\nCo-programmed and tested autonomous navigation algorithms while separately developing LiDAR-based navigation simulations for a skid-steer vehicle to evaluate motion planning and obstacle avoidance.\n",
+      "outcome": "Successfully completed all milestone demonstrations within 3 minutes, showcasing efficient system integration and reliable autonomous performance.\n\n\nAchieved a ranking within the top 10% of the class through strong technical execution, problem-solving, and project implementation.",
       "thumbnail": "",
       "media": [
         "https://raw.githubusercontent.com/alamfaizanw-alt/Faizan_portfolio/main/assets/img/ros-lidar/1784775904793_0.png"
