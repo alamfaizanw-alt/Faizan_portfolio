@@ -55,8 +55,9 @@
       "date": "Nov 2024–May 2025",
       "type": "work",
       "bullets": [
-        "Designed 3D CAD models of mechanical systems including gearboxes, bar lifts, and drivetrains in OnShape",
-        "Built and tested example robots as teaching aids, validating designs through iterative physical testing"
+        "Designed 3D CAD models of mechanical systems, including gearboxes, bar lifts, and drivetrains in OnShape.",
+        "Built and tested example robots as teaching aids, validating designs through iterative physical testing.",
+        "Implement learning points, strategies, and overall the core content themselves onto slides to be able to teach the lessons."
       ],
       "image": "",
       "order": 3
