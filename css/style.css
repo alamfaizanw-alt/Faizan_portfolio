@@ -74,7 +74,7 @@ nav{
   letter-spacing:0.2em;text-transform:uppercase;margin-bottom:1.5rem;
   display:flex;align-items:center;gap:0.75rem;
 }
-.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold);}
+
 
 .hero-name{
   font-size:clamp(3.5rem,8.5vw,7rem);font-weight:700;
@@ -235,9 +235,9 @@ hr.divider{border:none;border-top:1px solid var(--border);}
 .timeline-item:last-child{margin-bottom:0;}
 .timeline-content{background:var(--bg-card);border:1px solid var(--border);padding:1.5rem;}
 .timeline-content:hover{border-color:var(--gold-dim);}
-.timeline-content.left{grid-column:1;text-align:right;}
+.timeline-content.left{grid-column:1;text-align:left;}
 .timeline-content.right{grid-column:3;}
-.timeline-content.left .tl-bullets{text-align:right;}
+
 
 .timeline-dot{
   grid-column:2;display:flex;align-items:flex-start;justify-content:center;
@@ -254,17 +254,18 @@ hr.divider{border:none;border-top:1px solid var(--border);}
 .tl-title{font-size:0.95rem;font-weight:600;color:var(--text);margin-bottom:0.15rem;}
 .tl-company{font-size:12px;color:var(--text-muted);margin-bottom:0.75rem;}
 .tl-bullets{list-style:none;padding:0;}
-.tl-bullets li{font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:0.25rem;}
-.tl-bullets li::before{content:'— ';color:var(--gold-dim);}
-.timeline-content.left .tl-bullets li::before{content:'';margin:0;}
-.timeline-content.left .tl-bullets li::after{content:' —';color:var(--gold-dim);}
+.tl-bullets li{font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:0.4rem;padding-left:0.85rem;position:relative;}
+.tl-bullets li::before{content:'';position:absolute;left:0;top:0.55em;width:4px;height:1px;background:var(--gold-dim);}
+
+
+
 /* Timeline image layout */
 .tl-inner{display:flex;gap:1rem;align-items:flex-start;}
 .tl-text{flex:1;min-width:0;}
 .tl-image{flex-shrink:0;width:110px;}
 .tl-image img{width:100%;aspect-ratio:4/3;object-fit:cover;border:1px solid var(--border);display:block;}
-.timeline-content.left .tl-inner{flex-direction:row-reverse;}
-.timeline-content.left .tl-text{text-align:right;}
+
+
 
 /* ── SKILLS ── */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--border);}
@@ -274,7 +275,7 @@ hr.divider{border:none;border-top:1px solid var(--border);}
   letter-spacing:0.15em;text-transform:uppercase;margin-bottom:1.25rem;
   display:flex;align-items:center;gap:0.5rem;
 }
-.skill-card-label::before{content:'';width:20px;height:1px;background:var(--gold);}
+
 .skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem;}
 .skill-tag{
   font-family:var(--font-mono);font-size:11px;color:var(--text-muted);
@@ -427,7 +428,7 @@ hr.divider{border:none;border-top:1px solid var(--border);}
   letter-spacing:0.14em;text-transform:uppercase;margin-bottom:0.75rem;
   display:flex;align-items:center;gap:0.75rem;
 }
-.cs-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
 .cs-text{color:var(--text-muted);line-height:1.85;font-size:1rem;}
 .cs-outcome-text{
   font-family:var(--font-mono);font-size:13px;color:var(--gold);
@@ -546,9 +547,6 @@ footer{border-top:1px solid var(--border);padding:2rem 2.5rem;display:flex;align
   .timeline::before{left:16px;}
   .timeline-item{grid-template-columns:0 32px 1fr;}
   .timeline-content.left{grid-column:3;text-align:left;}
-  .timeline-content.left .tl-bullets{text-align:left;}
-  .timeline-content.left .tl-bullets li::before{content:'— ';}
-  .timeline-content.left .tl-bullets li::after{content:'';}
   .timeline-dot{justify-content:flex-start;padding-left:4px;}
   .field-row{grid-template-columns:1fr;}
   .field-3col{grid-template-columns:1fr;}
@@ -786,13 +784,8 @@ body:not(.loaded) .hero .social-links { opacity:0; transform:translateY(10px); }
 .timeline-content:hover { transform: translateY(-2px); }
 
 /* ── Section label refinement ── */
-.section-label {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-}
-.section-label::before {
-  content: '';
-  width: 18px; height: 1px; background: var(--gold); display: block;
-}
+
+
 
 /* ── Footer refinement ── */
 footer {
