@@ -69,7 +69,8 @@
       "date": "Aug 2024–Oct 2024",
       "type": "work",
       "bullets": [
-        "Evaluated LLM outputs against structured test suites; contributed to 50% improvement in model response relevancy"
+        "Evaluated LLM outputs against structured test suites; contributed to 50% improvement in model response relevancy.",
+        "Ensured the AI models were accurate and consistent and were able to understand the user, through a series of tests."
       ],
       "image": "",
       "order": 3
